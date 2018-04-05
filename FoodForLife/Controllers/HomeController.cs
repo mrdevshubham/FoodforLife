@@ -12,9 +12,16 @@ namespace FoodForLife.Controllers
         public ActionResult Index()
         {
 
-            bool Res = (new LoginDAL()).Authenticate("", "");
+           
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(string email, string password)
+        {
+            bool Res = (new LoginDAL()).Authenticate(email, password);
+            return Json( new { Result = "" } );
         }
 
         public ActionResult About()
