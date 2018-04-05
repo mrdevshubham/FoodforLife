@@ -1,0 +1,5 @@
+C:\Project_Hackathon\FoodForLife.Business\bin\Debug\FoodForLife.Business.dll
+C:\Project_Hackathon\FoodForLife.Business\bin\Debug\FoodForLife.Business.pdb
+C:\Project_Hackathon\FoodForLife.Business\obj\Debug\FoodForLife.Business.csproj.CoreCompileInputs.cache
+C:\Project_Hackathon\FoodForLife.Business\obj\Debug\FoodForLife.Business.dll
+C:\Project_Hackathon\FoodForLife.Business\obj\Debug\FoodForLife.Business.pdb

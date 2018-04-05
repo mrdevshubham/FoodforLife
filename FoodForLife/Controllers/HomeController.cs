@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FoodForLife.Data;
 
 namespace FoodForLife.Controllers
 {
@@ -10,6 +11,9 @@ namespace FoodForLife.Controllers
     {
         public ActionResult Index()
         {
+
+            bool Res = (new LoginDAL()).Authenticate("", "");
+
             return View();
         }
 

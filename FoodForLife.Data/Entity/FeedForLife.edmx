@@ -1,0 +1,631 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FeedforlifeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="mtblPartyType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Createddate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mtblRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Createddate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblDonorRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DonorName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="WeddingAnniversary" Type="datetime" />
+          <Property Name="EventName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="EventDate" Type="datetime" Nullable="false" />
+          <Property Name="EventAddress" Type="varchar(max)" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PinCode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PartyType" Type="bigint" />
+          <Property Name="FoodType" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="TotalServingsInvited" Type="int" />
+          <Property Name="CollectioTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TotalServingsLeft" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Createddate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDonorRequestStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestId" Type="bigint" />
+          <Property Name="Status" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Createddate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDonorRequestVendors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestId" Type="bigint" />
+          <Property Name="VendorId" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Createddate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblusers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firstname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lastname" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Createddate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblusersRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="RoleId" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Createddate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblVendors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendorName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Address_Primary" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Address_Secondary" Type="varchar" MaxLength="200" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Createddate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__DonorRequ__Reque__656C112C">
+          <End Role="tblDonorRequest" Type="Self.tblDonorRequest" Multiplicity="0..1" />
+          <End Role="tblDonorRequestStatus" Type="Self.tblDonorRequestStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDonorRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequestStatus">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DonorRequ__Reque__6FE99F9F">
+          <End Role="tblDonorRequest" Type="Self.tblDonorRequest" Multiplicity="0..1" />
+          <End Role="tblDonorRequestVendors" Type="Self.tblDonorRequestVendors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDonorRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequestVendors">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DonorRequ__Vendo__70DDC3D8">
+          <End Role="tblDonorRequest" Type="Self.tblDonorRequest" Multiplicity="0..1" />
+          <End Role="tblDonorRequestVendors" Type="Self.tblDonorRequestVendors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDonorRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequestVendors">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDonorR__Party__5FB337D6">
+          <End Role="mtblPartyType" Type="Self.mtblPartyType" Multiplicity="0..1" />
+          <End Role="tblDonorRequest" Type="Self.tblDonorRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mtblPartyType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequest">
+              <PropertyRef Name="PartyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblusersR__RoleI__5535A963">
+          <End Role="mtblRoles" Type="Self.mtblRoles" Multiplicity="1" />
+          <End Role="tblusersRole" Type="Self.tblusersRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mtblRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblusersRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblusersR__UserI__5441852A">
+          <End Role="tblusers" Type="Self.tblusers" Multiplicity="1" />
+          <End Role="tblusersRole" Type="Self.tblusersRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblusers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblusersRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FeedforlifeModelStoreContainer">
+          <EntitySet Name="mtblPartyType" EntityType="Self.mtblPartyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mtblRoles" EntityType="Self.mtblRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDonorRequest" EntityType="Self.tblDonorRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDonorRequestStatus" EntityType="Self.tblDonorRequestStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDonorRequestVendors" EntityType="Self.tblDonorRequestVendors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblusers" EntityType="Self.tblusers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblusersRole" EntityType="Self.tblusersRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblVendors" EntityType="Self.tblVendors" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DonorRequ__Reque__656C112C" Association="Self.FK__DonorRequ__Reque__656C112C">
+            <End Role="tblDonorRequest" EntitySet="tblDonorRequest" />
+            <End Role="tblDonorRequestStatus" EntitySet="tblDonorRequestStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DonorRequ__Reque__6FE99F9F" Association="Self.FK__DonorRequ__Reque__6FE99F9F">
+            <End Role="tblDonorRequest" EntitySet="tblDonorRequest" />
+            <End Role="tblDonorRequestVendors" EntitySet="tblDonorRequestVendors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DonorRequ__Vendo__70DDC3D8" Association="Self.FK__DonorRequ__Vendo__70DDC3D8">
+            <End Role="tblDonorRequest" EntitySet="tblDonorRequest" />
+            <End Role="tblDonorRequestVendors" EntitySet="tblDonorRequestVendors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDonorR__Party__5FB337D6" Association="Self.FK__tblDonorR__Party__5FB337D6">
+            <End Role="mtblPartyType" EntitySet="mtblPartyType" />
+            <End Role="tblDonorRequest" EntitySet="tblDonorRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblusersR__RoleI__5535A963" Association="Self.FK__tblusersR__RoleI__5535A963">
+            <End Role="mtblRoles" EntitySet="mtblRoles" />
+            <End Role="tblusersRole" EntitySet="tblusersRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblusersR__UserI__5441852A" Association="Self.FK__tblusersR__UserI__5441852A">
+            <End Role="tblusers" EntitySet="tblusers" />
+            <End Role="tblusersRole" EntitySet="tblusersRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FeedforlifeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="mtblPartyType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Createddate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblDonorRequests" Relationship="Self.FK__tblDonorR__Party__5FB337D6" FromRole="mtblPartyType" ToRole="tblDonorRequest" />
+        </EntityType>
+        <EntityType Name="mtblRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Createddate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblusersRoles" Relationship="Self.FK__tblusersR__RoleI__5535A963" FromRole="mtblRoles" ToRole="tblusersRole" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblDonorRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DonorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="WeddingAnniversary" Type="DateTime" Precision="3" />
+          <Property Name="EventName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EventAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PinCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PartyType" Type="Int64" />
+          <Property Name="FoodType" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TotalServingsInvited" Type="Int32" />
+          <Property Name="CollectioTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TotalServingsLeft" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Createddate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="mtblPartyType" Relationship="Self.FK__tblDonorR__Party__5FB337D6" FromRole="tblDonorRequest" ToRole="mtblPartyType" />
+          <NavigationProperty Name="tblDonorRequestStatus" Relationship="Self.FK__DonorRequ__Reque__656C112C" FromRole="tblDonorRequest" ToRole="tblDonorRequestStatus" />
+          <NavigationProperty Name="tblDonorRequestVendors" Relationship="Self.FK__DonorRequ__Reque__6FE99F9F" FromRole="tblDonorRequest" ToRole="tblDonorRequestVendors" />
+          <NavigationProperty Name="tblDonorRequestVendors1" Relationship="Self.FK__DonorRequ__Vendo__70DDC3D8" FromRole="tblDonorRequest" ToRole="tblDonorRequestVendors" />
+        </EntityType>
+        <EntityType Name="tblDonorRequestStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestId" Type="Int64" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Createddate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblDonorRequest" Relationship="Self.FK__DonorRequ__Reque__656C112C" FromRole="tblDonorRequestStatus" ToRole="tblDonorRequest" />
+        </EntityType>
+        <EntityType Name="tblDonorRequestVendor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestId" Type="Int64" />
+          <Property Name="VendorId" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Createddate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblDonorRequest" Relationship="Self.FK__DonorRequ__Reque__6FE99F9F" FromRole="tblDonorRequestVendors" ToRole="tblDonorRequest" />
+          <NavigationProperty Name="tblDonorRequest1" Relationship="Self.FK__DonorRequ__Vendo__70DDC3D8" FromRole="tblDonorRequestVendors" ToRole="tblDonorRequest" />
+        </EntityType>
+        <EntityType Name="tbluser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Createddate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblusersRoles" Relationship="Self.FK__tblusersR__UserI__5441852A" FromRole="tblusers" ToRole="tblusersRole" />
+        </EntityType>
+        <EntityType Name="tblusersRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="RoleId" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Createddate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="mtblRole" Relationship="Self.FK__tblusersR__RoleI__5535A963" FromRole="tblusersRole" ToRole="mtblRoles" />
+          <NavigationProperty Name="tbluser" Relationship="Self.FK__tblusersR__UserI__5441852A" FromRole="tblusersRole" ToRole="tblusers" />
+        </EntityType>
+        <EntityType Name="tblVendor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address_Primary" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_Secondary" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Createddate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK__tblDonorR__Party__5FB337D6">
+          <End Role="mtblPartyType" Type="Self.mtblPartyType" Multiplicity="0..1" />
+          <End Role="tblDonorRequest" Type="Self.tblDonorRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mtblPartyType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequest">
+              <PropertyRef Name="PartyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblusersR__RoleI__5535A963">
+          <End Role="mtblRoles" Type="Self.mtblRole" Multiplicity="1" />
+          <End Role="tblusersRole" Type="Self.tblusersRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mtblRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblusersRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DonorRequ__Reque__656C112C">
+          <End Role="tblDonorRequest" Type="Self.tblDonorRequest" Multiplicity="0..1" />
+          <End Role="tblDonorRequestStatus" Type="Self.tblDonorRequestStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDonorRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequestStatus">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DonorRequ__Reque__6FE99F9F">
+          <End Role="tblDonorRequest" Type="Self.tblDonorRequest" Multiplicity="0..1" />
+          <End Role="tblDonorRequestVendors" Type="Self.tblDonorRequestVendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDonorRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequestVendors">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DonorRequ__Vendo__70DDC3D8">
+          <End Role="tblDonorRequest" Type="Self.tblDonorRequest" Multiplicity="0..1" />
+          <End Role="tblDonorRequestVendors" Type="Self.tblDonorRequestVendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDonorRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequestVendors">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblusersR__UserI__5441852A">
+          <End Role="tblusers" Type="Self.tbluser" Multiplicity="1" />
+          <End Role="tblusersRole" Type="Self.tblusersRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblusers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblusersRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FeedforlifeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="mtblPartyTypes" EntityType="Self.mtblPartyType" />
+          <EntitySet Name="mtblRoles" EntityType="Self.mtblRole" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tblDonorRequests" EntityType="Self.tblDonorRequest" />
+          <EntitySet Name="tblDonorRequestStatus" EntityType="Self.tblDonorRequestStatu" />
+          <EntitySet Name="tblDonorRequestVendors" EntityType="Self.tblDonorRequestVendor" />
+          <EntitySet Name="tblusers" EntityType="Self.tbluser" />
+          <EntitySet Name="tblusersRoles" EntityType="Self.tblusersRole" />
+          <EntitySet Name="tblVendors" EntityType="Self.tblVendor" />
+          <AssociationSet Name="FK__tblDonorR__Party__5FB337D6" Association="Self.FK__tblDonorR__Party__5FB337D6">
+            <End Role="mtblPartyType" EntitySet="mtblPartyTypes" />
+            <End Role="tblDonorRequest" EntitySet="tblDonorRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblusersR__RoleI__5535A963" Association="Self.FK__tblusersR__RoleI__5535A963">
+            <End Role="mtblRoles" EntitySet="mtblRoles" />
+            <End Role="tblusersRole" EntitySet="tblusersRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DonorRequ__Reque__656C112C" Association="Self.FK__DonorRequ__Reque__656C112C">
+            <End Role="tblDonorRequest" EntitySet="tblDonorRequests" />
+            <End Role="tblDonorRequestStatus" EntitySet="tblDonorRequestStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DonorRequ__Reque__6FE99F9F" Association="Self.FK__DonorRequ__Reque__6FE99F9F">
+            <End Role="tblDonorRequest" EntitySet="tblDonorRequests" />
+            <End Role="tblDonorRequestVendors" EntitySet="tblDonorRequestVendors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DonorRequ__Vendo__70DDC3D8" Association="Self.FK__DonorRequ__Vendo__70DDC3D8">
+            <End Role="tblDonorRequest" EntitySet="tblDonorRequests" />
+            <End Role="tblDonorRequestVendors" EntitySet="tblDonorRequestVendors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblusersR__UserI__5441852A" Association="Self.FK__tblusersR__UserI__5441852A">
+            <End Role="tblusers" EntitySet="tblusers" />
+            <End Role="tblusersRole" EntitySet="tblusersRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FeedforlifeModelStoreContainer" CdmEntityContainer="FeedforlifeEntities">
+          <EntitySetMapping Name="mtblPartyTypes">
+            <EntityTypeMapping TypeName="FeedforlifeModel.mtblPartyType">
+              <MappingFragment StoreEntitySet="mtblPartyType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Createddate" ColumnName="Createddate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mtblRoles">
+            <EntityTypeMapping TypeName="FeedforlifeModel.mtblRole">
+              <MappingFragment StoreEntitySet="mtblRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Createddate" ColumnName="Createddate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="FeedforlifeModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDonorRequests">
+            <EntityTypeMapping TypeName="FeedforlifeModel.tblDonorRequest">
+              <MappingFragment StoreEntitySet="tblDonorRequest">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DonorName" ColumnName="DonorName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="WeddingAnniversary" ColumnName="WeddingAnniversary" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+                <ScalarProperty Name="EventAddress" ColumnName="EventAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="PartyType" ColumnName="PartyType" />
+                <ScalarProperty Name="FoodType" ColumnName="FoodType" />
+                <ScalarProperty Name="TotalServingsInvited" ColumnName="TotalServingsInvited" />
+                <ScalarProperty Name="CollectioTime" ColumnName="CollectioTime" />
+                <ScalarProperty Name="TotalServingsLeft" ColumnName="TotalServingsLeft" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Createddate" ColumnName="Createddate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDonorRequestStatus">
+            <EntityTypeMapping TypeName="FeedforlifeModel.tblDonorRequestStatu">
+              <MappingFragment StoreEntitySet="tblDonorRequestStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Createddate" ColumnName="Createddate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDonorRequestVendors">
+            <EntityTypeMapping TypeName="FeedforlifeModel.tblDonorRequestVendor">
+              <MappingFragment StoreEntitySet="tblDonorRequestVendors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Createddate" ColumnName="Createddate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblusers">
+            <EntityTypeMapping TypeName="FeedforlifeModel.tbluser">
+              <MappingFragment StoreEntitySet="tblusers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Createddate" ColumnName="Createddate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblusersRoles">
+            <EntityTypeMapping TypeName="FeedforlifeModel.tblusersRole">
+              <MappingFragment StoreEntitySet="tblusersRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Createddate" ColumnName="Createddate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVendors">
+            <EntityTypeMapping TypeName="FeedforlifeModel.tblVendor">
+              <MappingFragment StoreEntitySet="tblVendors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address_Primary" ColumnName="Address_Primary" />
+                <ScalarProperty Name="Address_Secondary" ColumnName="Address_Secondary" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Createddate" ColumnName="Createddate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

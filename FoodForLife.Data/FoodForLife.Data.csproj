@@ -30,8 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,11 +49,79 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Entity\FeedForLife.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FeedForLife.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\FeedForLife.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FeedForLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\FeedForLife.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FeedForLife.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\mtblPartyType.cs">
+      <DependentUpon>FeedForLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\mtblRole.cs">
+      <DependentUpon>FeedForLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoginDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entity\sysdiagram.cs">
+      <DependentUpon>FeedForLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblDonorRequest.cs">
+      <DependentUpon>FeedForLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblDonorRequestStatu.cs">
+      <DependentUpon>FeedForLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblDonorRequestVendor.cs">
+      <DependentUpon>FeedForLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tbluser.cs">
+      <DependentUpon>FeedForLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblusersRole.cs">
+      <DependentUpon>FeedForLife.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblVendor.cs">
+      <DependentUpon>FeedForLife.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EntityDeploy Include="Entity\FeedForLife.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FeedForLife.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entity\" />
+    <None Include="App.Config" />
+    <None Include="Entity\FeedForLife.edmx.diagram">
+      <DependentUpon>FeedForLife.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entity\FeedForLife.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FeedForLife.Context.cs</LastGenOutput>
+      <DependentUpon>FeedForLife.edmx</DependentUpon>
+    </Content>
+    <Content Include="Entity\FeedForLife.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FeedForLife.edmx</DependentUpon>
+      <LastGenOutput>FeedForLife.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
