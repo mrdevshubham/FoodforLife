@@ -3,3 +3,9 @@ C:\Project_Hackathon\FoodForLife.Model\bin\Debug\FoodForLife.Model.pdb
 C:\Project_Hackathon\FoodForLife.Model\obj\Debug\FoodForLife.Model.csproj.CoreCompileInputs.cache
 C:\Project_Hackathon\FoodForLife.Model\obj\Debug\FoodForLife.Model.dll
 C:\Project_Hackathon\FoodForLife.Model\obj\Debug\FoodForLife.Model.pdb
+C:\Hackathon\FeedForLife\FoodForLife.Model\bin\Debug\FoodForLife.Model.dll
+C:\Hackathon\FeedForLife\FoodForLife.Model\bin\Debug\FoodForLife.Model.pdb
+C:\Hackathon\FeedForLife\FoodForLife.Model\obj\Debug\FoodForLife.Model.csprojResolveAssemblyReference.cache
+C:\Hackathon\FeedForLife\FoodForLife.Model\obj\Debug\FoodForLife.Model.csproj.CoreCompileInputs.cache
+C:\Hackathon\FeedForLife\FoodForLife.Model\obj\Debug\FoodForLife.Model.dll
+C:\Hackathon\FeedForLife\FoodForLife.Model\obj\Debug\FoodForLife.Model.pdb

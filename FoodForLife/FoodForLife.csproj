@@ -164,6 +164,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DonationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -281,6 +283,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Donation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -291,9 +295,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FoodForLife.Data\FoodForLife.Data.csproj">
-      <Project>{5742b98f-3ce0-43ac-a970-ece5696f4b86}</Project>
-      <Name>FoodForLife.Data</Name>
+    <ProjectReference Include="..\FoodForLife.Business\FoodForLife.Business.csproj">
+      <Project>{f21cb32e-0bb7-498a-b417-efc8ec560f06}</Project>
+      <Name>FoodForLife.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FoodForLife.Model\FoodForLife.Model.csproj">
+      <Project>{3a585018-627c-4d69-9b5f-326d2262eedd}</Project>
+      <Name>FoodForLife.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
