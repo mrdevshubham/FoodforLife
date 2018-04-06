@@ -3,3 +3,16 @@ C:\Project_Hackathon\FoodForLife.Business\bin\Debug\FoodForLife.Business.pdb
 C:\Project_Hackathon\FoodForLife.Business\obj\Debug\FoodForLife.Business.csproj.CoreCompileInputs.cache
 C:\Project_Hackathon\FoodForLife.Business\obj\Debug\FoodForLife.Business.dll
 C:\Project_Hackathon\FoodForLife.Business\obj\Debug\FoodForLife.Business.pdb
+C:\Hackathon\FeedForLife\FoodForLife.Business\bin\Debug\FoodForLife.Business.dll
+C:\Hackathon\FeedForLife\FoodForLife.Business\bin\Debug\FoodForLife.Business.pdb
+C:\Hackathon\FeedForLife\FoodForLife.Business\obj\Debug\FoodForLife.Business.csprojResolveAssemblyReference.cache
+C:\Hackathon\FeedForLife\FoodForLife.Business\obj\Debug\FoodForLife.Business.csproj.CoreCompileInputs.cache
+C:\Hackathon\FeedForLife\FoodForLife.Business\obj\Debug\FoodForLife.Business.dll
+C:\Hackathon\FeedForLife\FoodForLife.Business\obj\Debug\FoodForLife.Business.pdb
+C:\Hackathon\FeedForLife\FoodForLife.Business\bin\Debug\FoodForLife.Data.dll
+C:\Hackathon\FeedForLife\FoodForLife.Business\bin\Debug\FoodForLife.Model.dll
+C:\Hackathon\FeedForLife\FoodForLife.Business\bin\Debug\EntityFramework.dll
+C:\Hackathon\FeedForLife\FoodForLife.Business\bin\Debug\FoodForLife.Data.pdb
+C:\Hackathon\FeedForLife\FoodForLife.Business\bin\Debug\FoodForLife.Data.dll.config
+C:\Hackathon\FeedForLife\FoodForLife.Business\bin\Debug\FoodForLife.Model.pdb
+C:\Hackathon\FeedForLife\FoodForLife.Business\bin\Debug\EntityFramework.xml

@@ -9,3 +9,16 @@ C:\Project_Hackathon\FoodForLife.Data\bin\Debug\EntityFramework.SqlServer.dll
 C:\Project_Hackathon\FoodForLife.Data\bin\Debug\EntityFramework.xml
 C:\Project_Hackathon\FoodForLife.Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\Project_Hackathon\FoodForLife.Data\obj\Debug\FoodForLife.Data.csprojResolveAssemblyReference.cache
+C:\Hackathon\FeedForLife\FoodForLife.Data\bin\Debug\FoodForLife.Data.dll.config
+C:\Hackathon\FeedForLife\FoodForLife.Data\bin\Debug\FoodForLife.Data.dll
+C:\Hackathon\FeedForLife\FoodForLife.Data\bin\Debug\FoodForLife.Data.pdb
+C:\Hackathon\FeedForLife\FoodForLife.Data\bin\Debug\EntityFramework.dll
+C:\Hackathon\FeedForLife\FoodForLife.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Hackathon\FeedForLife\FoodForLife.Data\bin\Debug\EntityFramework.xml
+C:\Hackathon\FeedForLife\FoodForLife.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Hackathon\FeedForLife\FoodForLife.Data\obj\Debug\FoodForLife.Data.csprojResolveAssemblyReference.cache
+C:\Hackathon\FeedForLife\FoodForLife.Data\obj\Debug\FoodForLife.Data.csproj.CoreCompileInputs.cache
+C:\Hackathon\FeedForLife\FoodForLife.Data\obj\Debug\FoodForLife.Data.dll
+C:\Hackathon\FeedForLife\FoodForLife.Data\obj\Debug\FoodForLife.Data.pdb
+C:\Hackathon\FeedForLife\FoodForLife.Data\bin\Debug\FoodForLife.Model.dll
+C:\Hackathon\FeedForLife\FoodForLife.Data\bin\Debug\FoodForLife.Model.pdb

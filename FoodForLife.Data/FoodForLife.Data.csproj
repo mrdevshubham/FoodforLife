@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DonorDAL.cs" />
     <Compile Include="Entity\FeedForLife.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,7 +95,12 @@
       <DependentUpon>FeedForLife.tt</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\FoodForLife.Model\FoodForLife.Model.csproj">
+      <Project>{3a585018-627c-4d69-9b5f-326d2262eedd}</Project>
+      <Name>FoodForLife.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Entity\FeedForLife.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

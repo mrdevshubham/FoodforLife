@@ -6,21 +6,34 @@
     <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <script type="application/x-javascript">
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
 
-        function hideURLbar() {
-            window.scrollTo(0, 1);
+    <script type="application/x-javascript">
+    $(document).ready(function() {
+        $("#button_1").click(function(e) {
+        $.ajax({
+        type: "POST",
+        url: "/Home/Index",
+        data: {
+        id: $("#button_1").val(),
+        access_token: $("#access_token").val()
+        },
+        success: function(result) {
+        alert('ok');
+        },
+        error: function(result) {
+        alert('error');
         }
+        });
+    });
     </script>
+    
     <!--//tags -->
     <link href="~/Assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Assets/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
     <link href="~/Assets/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css' />
     <link href="~/Assets/css/fontawesome-all.css" rel="stylesheet">
+   
     <!-- //for bootstrap working -->
     <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
