@@ -29,7 +29,7 @@
                             <a class="scroll" href="#about">About</a>
                         </li>
                         <li>
-                            <a class="scroll" href="#donor" style="color:blue;">Donor</a>
+                            <a class="scroll" target="_blank" href='@Url.Action("Donor","Home")' style="color:blue;">Donor</a>
                         </li>
                         <li>
                             <a class="scroll" href="#services">Services</a>
@@ -237,28 +237,6 @@
 <!--//ab-->
 
 <!--//Donor-->
-<div class="tab2" id="donor">
-
-    <div class="tab-info">
-        <div class="contact_grid_right">
-            <h2>Donor Details</h2>
-            <form action="#" method="post">
-                <div class="contact_left_grid">
-                    <input type="text" name="Name" placeholder="Name" required="">
-                    <input type="email" name="Email" placeholder="Email" required="">
-
-                    <input type="text" name="Telephone" placeholder="Telephone" required="">
-                    <input type="text" name="Subject" placeholder="Subject" required="">
-                    <textarea name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
-                    <input type="submit" value="Submit">
-                    <input type="reset" value="Clear">
-                    <div class="clearfix"> </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 <!--//Donor-->
 <!--/what-->
 <div class="works" id="services">

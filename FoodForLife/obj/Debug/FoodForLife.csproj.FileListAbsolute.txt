@@ -80,27 +80,26 @@ c:\users\j912\documents\visual studio 2015\Projects\FoodForLife\FoodForLife\bin\
 c:\users\j912\documents\visual studio 2015\Projects\FoodForLife\FoodForLife\obj\Debug\FoodForLife.csprojResolveAssemblyReference.cache
 c:\users\j912\documents\visual studio 2015\Projects\FoodForLife\FoodForLife\obj\Debug\FoodForLife.dll
 c:\users\j912\documents\visual studio 2015\Projects\FoodForLife\FoodForLife\obj\Debug\FoodForLife.pdb
-C:\Project_Hackathon\FoodForLife\obj\Debug\FoodForLife.csprojResolveAssemblyReference.cache
-C:\Project_Hackathon\FoodForLife\obj\Debug\FoodForLife.csproj.CoreCompileInputs.cache
 C:\Project_Hackathon\FoodForLife\bin\ApplicationInsights.config
-C:\Project_Hackathon\FoodForLife\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Project_Hackathon\FoodForLife\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Project_Hackathon\FoodForLife\bin\roslyn\VBCSCompiler.exe.config
 C:\Project_Hackathon\FoodForLife\bin\roslyn\csc.exe
 C:\Project_Hackathon\FoodForLife\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Project_Hackathon\FoodForLife\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
 C:\Project_Hackathon\FoodForLife\bin\roslyn\Microsoft.CodeAnalysis.dll
 C:\Project_Hackathon\FoodForLife\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Project_Hackathon\FoodForLife\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Project_Hackathon\FoodForLife\bin\roslyn\Microsoft.VisualBasic.Core.targets
 C:\Project_Hackathon\FoodForLife\bin\roslyn\System.Collections.Immutable.dll
 C:\Project_Hackathon\FoodForLife\bin\roslyn\System.Reflection.Metadata.dll
 C:\Project_Hackathon\FoodForLife\bin\roslyn\vbc.exe
 C:\Project_Hackathon\FoodForLife\bin\roslyn\VBCSCompiler.exe
+C:\Project_Hackathon\FoodForLife\bin\roslyn\VBCSCompiler.exe.config
 C:\Project_Hackathon\FoodForLife\bin\FoodForLife.dll.config
 C:\Project_Hackathon\FoodForLife\bin\FoodForLife.dll
 C:\Project_Hackathon\FoodForLife\bin\FoodForLife.pdb
 C:\Project_Hackathon\FoodForLife\bin\Antlr3.Runtime.dll
 C:\Project_Hackathon\FoodForLife\bin\EntityFramework.dll
 C:\Project_Hackathon\FoodForLife\bin\EntityFramework.SqlServer.dll
+C:\Project_Hackathon\FoodForLife\bin\FoodForLife.Data.dll
 C:\Project_Hackathon\FoodForLife\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Project_Hackathon\FoodForLife\bin\Microsoft.AI.DependencyCollector.dll
 C:\Project_Hackathon\FoodForLife\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -122,6 +121,8 @@ C:\Project_Hackathon\FoodForLife\bin\System.Web.WebPages.Deployment.dll
 C:\Project_Hackathon\FoodForLife\bin\System.Web.WebPages.dll
 C:\Project_Hackathon\FoodForLife\bin\System.Web.WebPages.Razor.dll
 C:\Project_Hackathon\FoodForLife\bin\WebGrease.dll
+C:\Project_Hackathon\FoodForLife\bin\FoodForLife.Data.pdb
+C:\Project_Hackathon\FoodForLife\bin\FoodForLife.Data.dll.config
 C:\Project_Hackathon\FoodForLife\bin\Microsoft.AI.DependencyCollector.xml
 C:\Project_Hackathon\FoodForLife\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Project_Hackathon\FoodForLife\bin\Microsoft.AI.Web.xml
@@ -142,8 +143,7 @@ C:\Project_Hackathon\FoodForLife\bin\EntityFramework.SqlServer.xml
 C:\Project_Hackathon\FoodForLife\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Project_Hackathon\FoodForLife\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Project_Hackathon\FoodForLife\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Project_Hackathon\FoodForLife\obj\Debug\FoodForLife.csprojResolveAssemblyReference.cache
+C:\Project_Hackathon\FoodForLife\obj\Debug\FoodForLife.csproj.CoreCompileInputs.cache
 C:\Project_Hackathon\FoodForLife\obj\Debug\FoodForLife.dll
 C:\Project_Hackathon\FoodForLife\obj\Debug\FoodForLife.pdb
-C:\Project_Hackathon\FoodForLife\bin\FoodForLife.Data.dll
-C:\Project_Hackathon\FoodForLife\bin\FoodForLife.Data.pdb
-C:\Project_Hackathon\FoodForLife\bin\FoodForLife.Data.dll.config

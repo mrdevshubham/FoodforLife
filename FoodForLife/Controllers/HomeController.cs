@@ -24,6 +24,16 @@ namespace FoodForLife.Controllers
             return Json( new { Result = "" } );
         }
 
+        public ActionResult Donor()
+        {
+            return View();
+        }
+
+        public ActionResult Admin()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
