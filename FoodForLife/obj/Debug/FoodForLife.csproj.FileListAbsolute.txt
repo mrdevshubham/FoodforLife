@@ -212,6 +212,9 @@ C:\Hackathon\FeedForLife\FoodForLife\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Hackathon\FeedForLife\FoodForLife\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Hackathon\FeedForLife\FoodForLife\obj\Debug\FoodForLife.csprojResolveAssemblyReference.cache
 C:\Hackathon\FeedForLife\FoodForLife\obj\Debug\FoodForLife.csproj.CoreCompileInputs.cache
-C:\Hackathon\FeedForLife\FoodForLife\obj\Debug\FoodForLife.csproj.CopyComplete
 C:\Hackathon\FeedForLife\FoodForLife\obj\Debug\FoodForLife.dll
 C:\Hackathon\FeedForLife\FoodForLife\obj\Debug\FoodForLife.pdb
+C:\Hackathon\FeedForLife\FoodForLife\bin\FoodForLife.Business.dll
+C:\Hackathon\FeedForLife\FoodForLife\bin\FoodForLife.Model.dll
+C:\Hackathon\FeedForLife\FoodForLife\bin\FoodForLife.Business.pdb
+C:\Hackathon\FeedForLife\FoodForLife\bin\FoodForLife.Model.pdb
