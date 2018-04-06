@@ -32,6 +32,16 @@ namespace FoodForLife.Controllers
             }
         }
 
+        public ActionResult Donor()
+        {
+            return View();
+        }
+
+        public ActionResult Admin()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

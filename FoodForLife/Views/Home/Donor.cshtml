@@ -1,0 +1,195 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Donor Page</title>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="~/Assets/css/donorStyle.css">
+    <link rel="stylesheet" href="~/Assets/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="~/Assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+   
+
+    
+
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button3 {
+            background-color: #f44336;
+        }
+        /* Red */ 
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h2 class="tittle_w3_agileinfo">Donor Details</h2>
+        <div class="row">
+            <h4>Personal Details</h4>
+            <div class="input-group input-group-icon">
+                <input type="text" id="name" placeholder="Full Name" maxlength="50" required />
+                <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+                <input type="number" id="contact" placeholder="Contact" maxlength="10" required />
+                <div class="input-icon"><i class="fa fa-envelope"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+                <input type="email" id="email" placeholder="Email Id" maxlength="50" required />
+                <div class="input-icon"><i class="fa fa-envelope"></i></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-half">
+                <h4>Date of Birth</h4>
+                <div class="input-group">
+                    <input id="dateDOB" placeholder="DOB" required />   
+                </div>
+            </div>  
+            <div class="col-half">
+                <h4>Wedding Anniversary</h4>
+                <div class="input-group">
+                    <input id="dateAnniversary" placeholder="Wedding Anniversary" required />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h4>Function Details</h4>
+            <div class="input-group input-group-icon">
+                <input id="datepicker" placeholder="Function Date" required  />
+                <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+            </div>
+
+                <div class="input-group input-group-icon">
+                    <input type="textarea" id="venueAddress" placeholder="Venue Details" maxlength="500" required />
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+
+
+
+                <div class="input-group input-group-icon">
+                    <input type="text" id="city" placeholder="City" maxlength="50" required />
+                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                </div>
+                <div class="input-group input-group-icon">
+                    <input type="number" id="pincode" placeholder="Pincode" maxlength="50" required />
+                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                </div>
+            </div>
+
+
+        <div class="input-group input-group-icon">
+            <select id="partyType" required class="col-dropdown">
+                <option value="">--Select Party Type--</option>
+                <option value="1">Birthday Party</option>
+                <option value="2">Wedding</option>
+                <option value="3">Kitty Party / Get Together</option>
+                <option value="4">Death Ceremony</option>
+                <option value="5">Devotional Ceremony</option>
+                <option value="6">Others</option>
+            </select>
+        </div>
+
+        <div class="input-group input-group-icon">
+            <input type="text" id="otherTextId" placeholder="Others(Please Specify)" maxlength="50" required />
+            <div class="input-icon"><i class="fa fa-user"></i></div>
+        </div>
+
+        <div class="input-group input-group-icon">
+            <select id="foodType" required class="col-dropdown-right">
+                <option value="">--Select Food Type--</option>
+                <option value="1">Vegetarian</option>
+                <option value="2">Non-Vegetarian</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <h4>Logistics Details</h4>
+
+            <div class="input-group input-group-icon">
+                <input type="number" id="servingsInvited" placeholder="Number of servings invited" maxlength="9" required />
+                <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+                <input type="text" id="timeCollection" placeholder="Time Of Collection" maxlength="20" required />
+                <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+            <div class="input-group input-group-icon">
+                <input type="number" id="expectedServings" placeholder="Expected Servings Left" maxlength="9" />
+                <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h4>Consent</h4>
+            <div class="input-group">
+                <input type="checkbox" id="terms" />
+                <label for="terms">I agree to receive the promotional emails and messages from Feed4Life for my contributions to the society.</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-group input-group-icon">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="submit" class="button">Submit</button>
+                <button type="button" onclick="reset()" class="button button3">Reset</button>
+            </div>
+        </div>
+
+    </div>
+
+    @*<script src="js/index.js"></script>*@
+   
+   
+
+    <script>
+$('#partyType').on('change', function() {
+  if ( this.value == '6')
+  {
+  document.getElementById('otherTextId').style.display = 'block';
+  }
+  else
+  {
+  document.getElementById('otherTextId').style.display = 'none';
+  }
+});
+
+$(document).ready(function() {
+ document.getElementById('otherTextId').style.display = 'none';
+        $("#datepicker").datepicker();
+        $("#dateDOB").datepicker();
+        $("#dateAnniversary").datepicker();
+});
+
+function reset() {
+    document.getElementById("myForm").reset();
+    
+}
+    </script>
+
+</body>
+</html>
+
