@@ -218,3 +218,4 @@ C:\Hackathon\FeedForLife\FoodForLife\bin\FoodForLife.Business.dll
 C:\Hackathon\FeedForLife\FoodForLife\bin\FoodForLife.Model.dll
 C:\Hackathon\FeedForLife\FoodForLife\bin\FoodForLife.Business.pdb
 C:\Hackathon\FeedForLife\FoodForLife\bin\FoodForLife.Model.pdb
+C:\Hackathon\FeedForLife\FoodForLife\obj\Debug\FoodForLife.csproj.CopyComplete

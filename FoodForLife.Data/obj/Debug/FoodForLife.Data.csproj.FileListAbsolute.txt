@@ -22,3 +22,4 @@ C:\Hackathon\FeedForLife\FoodForLife.Data\obj\Debug\FoodForLife.Data.dll
 C:\Hackathon\FeedForLife\FoodForLife.Data\obj\Debug\FoodForLife.Data.pdb
 C:\Hackathon\FeedForLife\FoodForLife.Data\bin\Debug\FoodForLife.Model.dll
 C:\Hackathon\FeedForLife\FoodForLife.Data\bin\Debug\FoodForLife.Model.pdb
+C:\Hackathon\FeedForLife\FoodForLife.Data\obj\Debug\FoodForLife.Data.csproj.CopyComplete

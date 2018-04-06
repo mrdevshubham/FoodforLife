@@ -16,3 +16,4 @@ C:\Hackathon\FeedForLife\FoodForLife.Business\bin\Debug\FoodForLife.Data.pdb
 C:\Hackathon\FeedForLife\FoodForLife.Business\bin\Debug\FoodForLife.Data.dll.config
 C:\Hackathon\FeedForLife\FoodForLife.Business\bin\Debug\FoodForLife.Model.pdb
 C:\Hackathon\FeedForLife\FoodForLife.Business\bin\Debug\EntityFramework.xml
+C:\Hackathon\FeedForLife\FoodForLife.Business\obj\Debug\FoodForLife.Business.csproj.CopyComplete

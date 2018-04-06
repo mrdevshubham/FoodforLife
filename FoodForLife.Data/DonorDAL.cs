@@ -32,7 +32,7 @@ namespace FoodForLife.Data
                     otblDonorRequest.PartyType = 101;
                     otblDonorRequest.FoodType = "";
                     otblDonorRequest.TotalServingsInvited = oclsDonationDetails.TotalServingInvited;
-                    otblDonorRequest.CollectioTime = oclsDonationDetails.CollectionTime.TimeOfDay;
+                    otblDonorRequest.CollectioTime = oclsDonationDetails.CollectionTime;
                     otblDonorRequest.TotalServingsLeft = oclsDonationDetails.TotalServingLeft;
                     otblDonorRequest.IsActive = oclsDonationDetails.Isactive;
                     otblDonorRequest.Createddate = oclsDonationDetails.CreatedDate;
@@ -76,7 +76,7 @@ namespace FoodForLife.Data
                                          PartyType = "",
                                          FoodType = "",
                                          TotalServingInvited = donor.TotalServingsInvited ?? 0,
-                                         CollectionTime = Convert.ToDateTime(donor.CollectioTime),
+                                         CollectionTime = donor.CollectioTime,
                                          TotalServingLeft = donor.TotalServingsLeft ?? 0,
                                          Isactive = donor.IsActive,
                                          CreatedDate = donor.Createddate,
@@ -87,7 +87,7 @@ namespace FoodForLife.Data
                     return lstDonor;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }

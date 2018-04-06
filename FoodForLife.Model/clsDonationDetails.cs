@@ -24,8 +24,13 @@ namespace FoodForLife.Model
         public string PartyType { get; set; }
         public string FoodType { get; set; }
         public int TotalServingInvited { get; set; }
-        public DateTime CollectionTime { get; set; }
+        public TimeSpan CollectionTime { get; set; }
         public int TotalServingLeft { get; set; }
+
+        public string PrimaryAssignee { get; set; }
+        public string SecondaryAssignee { get; set; }
+
+
         public bool Isactive { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
