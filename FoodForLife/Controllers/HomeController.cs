@@ -37,6 +37,14 @@ namespace FoodForLife.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult SaveDonation(clsDonationDetails oclsDonationDetails)
+        {
+            var Result = (new DonorBAL()).SaveDonorDetailsBAL(oclsDonationDetails);
+            return View();
+        }
+
+
         public ActionResult Admin()
         {
             return View();
