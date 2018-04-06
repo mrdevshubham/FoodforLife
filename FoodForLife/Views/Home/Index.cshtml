@@ -3,6 +3,7 @@
 }
 
 
+
 <div class="top_header" id="home">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -127,18 +128,20 @@
             <div class="donate-log-in book-form">
                 <h5>Login Now</h5>
                 <form action="#" method="post">
-                    <input type="email" name="Email" class="email" placeholder="Email" required="" />
-                    <input type="password" name="Password" class="password" placeholder="Password" required="" />
+                    <input type="email" name="Email" class="email" id="adminEmailAddress" placeholder="Email" required="" />
+                    <input type="password" name="Password" class="password" id="adminPassword" placeholder="Password" required="" />
                     <div class="check-box two">
                         <input name="chekbox" type="checkbox" id="brand1" value="">
                     </div>
-                    <input type="submit" value="Submit">
+                    <p id="lblmessage" style="color:red;"></p>
+                    <input type="button" value="Submit" id="adminLogin">
                 </form>
             </div>
         </div>
         <div class="col-md-8 donate-info">
             <h4>Leave us a Message</h4>
-            <p>We know it takes the power of many to end childhood hunger for good. We connect donors, experts, partners, leaders and communities to attack the problem from all angles.</p>
+            <p>We know it takes the power of many to end people hunger for good. We connect donors, experts, partners, leaders and communities to attack the problem from all angles.</p>
+            <p>Feed the People is thsriving in a new era, marked by Christian values, integrity, resourcefulness, stewardship and transparency.</p>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -155,13 +158,13 @@
                             <img src="~/Assets/images/banner6.jpg" class="img-responsive" alt="Relief">
                         </div>
                         <div class="banner_bottom_left">
-                            <h4>Feed For Hungry Child</h4>
+                            <h4>Feed For Hungry People</h4>
 
                             <p>
-                                It takes the power of many to end childhood hunger: donors who believe in the cause, experts to diagnose the problem and innovate solutions, organizations to pool their resources and expertise, and communities to work together for change!
+                                It takes the power of many to end an epidemic: donors who believe in the cause, experts to diagnose the problem and innovate solutions, organizations to pool their resources and expertise, and communities to work together for change!
                             </p>
                             <p>
-                                We feed the Children exists to end childhood hunger. It’s the cause upon which we were founded in 1979 and the one that we continue to fight for each and every day.
+                                We feed for their survival and we exists to end this epidemic in our country. It’s the cause upon which we were founded in 2018 and the one that we continue to fight for each and every day.
                             </p>
                             <div class="ab_button">
                                 <a class="btn btn-primary btn-lg hvr-underline-from-left" href="single.html" role="button">Read More </a>
@@ -173,16 +176,13 @@
                             <img src="~/Assets/images/banner2.jpg" class="img-responsive" alt="Relief">
                         </div>
                         <div class="banner_bottom_left">
-                            <h4>Education to Every Child</h4>
+                            <h4>Value every donor</h4>
 
                             <p>
-                                Maecenas quis neque libero. Class aptent taciti.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Pellentesque
-                                convallis diam consequat magna vulputate malesuada. Cras a ornare elit. Nulla viverra pharetra sem, eget pulvinar
-                                neque pharetra ac.
+                                We believe in donors playing an active role in ending hunger.
                             </p>
                             <p>
-                                Lorem Ipsum convallis diam consequat magna vulputate malesuada. Cras a ornare elit. Nulla viverra pharetra sem, eget
-                                pulvinar neque pharetra ac.
+                                We believe in making changes when something isn’t working and building on the success when it is.
                             </p>
                             <div class="ab_button">
                                 <a class="btn btn-primary btn-lg hvr-underline-from-left" href="single.html" role="button">Read More </a>
@@ -194,50 +194,23 @@
                             <img src="~/Assets/images/banner1.jpg" class="img-responsive" alt="Relief">
                         </div>
                         <div class="banner_bottom_left">
-                            <h4>Patient and Family Support</h4>
+                            <h4>Support to the most needy and last ones in the society chain</h4>
+                            
                             <p>
-                                Maecenas quis neque libero. Class aptent taciti.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Pellentesque
-                                convallis diam consequat magna vulputate malesuada. Cras a ornare elit. Nulla viverra pharetra sem, eget pulvinar
-                                neque pharetra ac.
-                            </p>
-                            <p>
-                                Lorem Ipsum convallis diam consequat magna vulputate malesuada. Cras a ornare elit. Nulla viverra pharetra sem, eget
-                                pulvinar neque pharetra ac.
+                                We are here to support the ones who are left behind in the race of growth in the society and have not been able to gather minimum 2 times food even
                             </p>
                             <div class="ab_button">
                                 <a class="btn btn-primary btn-lg hvr-underline-from-left" href="single.html" role="button">Read More </a>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="respon_info_img">
-                            <img src="~/Assets/images/banner4.jpg" class="img-responsive" alt="Relief">
-                        </div>
-                        <div class="banner_bottom_left">
-                            <h4>Provide Treatment</h4>
-                            <p>
-                                Maecenas quis neque libero. Class aptent taciti.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Pellentesque
-                                convallis diam consequat magna vulputate malesuada. Cras a ornare elit. Nulla viverra pharetra sem, eget pulvinar
-                                neque pharetra ac.
-                            </p>
-                            <p>
-                                Lorem Ipsum convallis diam consequat magna vulputate malesuada. Cras a ornare elit. Nulla viverra pharetra sem, eget
-                                pulvinar neque pharetra ac.
-                            </p>
-                            <div class="ab_button">
-                                <a class="btn btn-primary btn-lg hvr-underline-from-left" href="single.html" role="button">Read More </a>
-                            </div>
-                        </div>
-                    </li>
+    
                 </ul>
             </div>
         </div>
     </div>
 </div>
 <!--//ab-->
-
-<!--//Donor-->
-<!--//Donor-->
 <!--/what-->
 <div class="works" id="services">
     <div class="container">
@@ -611,3 +584,39 @@
     </div>
 </div>
 <!--//gallery-->
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#adminLogin').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Home/SignIn",
+                data: {
+                    email: $("#adminEmailAddress").val(),
+                    password: $("#adminPassword").val(),
+                },
+                success: function (result) {
+                    console.log(result.Result);
+                    if (result.Result == "Success") {
+                       // window.location.href("" ,"Account");
+                        location.href = '/Home/Donor/';
+
+                    }
+                    else {
+
+                        $('#lblmessage').text(result.Message);
+
+                    }
+                    
+                },
+                error: function (result) {
+                    alert('error');
+                }
+            });
+
+        })
+        
+    })
+
+</script>

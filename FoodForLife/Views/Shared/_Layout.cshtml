@@ -6,26 +6,6 @@
     <!--/tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-
-    <script type="application/x-javascript">
-    $(document).ready(function() {
-        $("#button_1").click(function(e) {
-        $.ajax({
-        type: "POST",
-        url: "/Home/Index",
-        data: {
-        id: $("#button_1").val(),
-        access_token: $("#access_token").val()
-        },
-        success: function(result) {
-        alert('ok');
-        },
-        error: function(result) {
-        alert('error');
-        }
-        });
-    });
-    </script>
     
     <!--//tags -->
     <link href="~/Assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -33,10 +13,13 @@
     <link href="~/Assets/css/prettyPhoto.css" rel="stylesheet" type="text/css" />
     <link href="~/Assets/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css' />
     <link href="~/Assets/css/fontawesome-all.css" rel="stylesheet">
+
    
     <!-- //for bootstrap working -->
     <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700" rel="stylesheet"> 
+    
+    <script type="text/javascript" src="~/Assets/js/jquery-2.2.3.min.js"></script>
 
     <title>@ViewBag.Title - My ASP.NET Application</title>
     
@@ -209,12 +192,29 @@
     </div>
     <!-- //footer -->
 
-    <script type="text/javascript" src="~/Assets/js/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="~/Assets/js/bootstrap.js"></script>
+    <script src="~/Assets/js/responsiveslides.min.js"></script>
+    <script type="text/javascript" src="~/Assets/js/all.js"></script>
+    <!-- js -->
+    <script type="text/javascript" src="~/Assets/js/simplyCountdown.js"></script>
+    <link href="~/Assets/css/simplyCountdown.css" rel='stylesheet' type='text/css' />
+
     <!-- script for responsive tabs -->
     <script src="~/Assets/js/easy-responsive-tabs.js"></script>
+
+    <script type="text/javascript" src="~/Assets/js/easing.js"></script>
+    <script type="text/javascript" src="~/Assets/js/move-top.js"></script>
+
+    <!-- jQuery-Photo-filter-lightbox-Gallery-plugin -->
+
+    <script src="~/Assets/js/jquery.quicksand.js" type="text/javascript"></script>
+    @*<script src="~/Assets/js/script.js" type="text/javascript"></script>*@
+    <script src="~/Assets/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+    <!-- //jQuery-Photo-filter-lightbox-Gallery-plugin -->
+
     <script>
         $(document).ready(function () {
+            
             $('#horizontalTab').easyResponsiveTabs({
                 type: 'default', //Types: default, vertical, accordion
                 width: 'auto', //auto or any width like 600px
@@ -236,7 +236,6 @@
         });
     </script>
     <!--// script for responsive tabs -->
-    <script src="~/Assets/js/responsiveslides.min.js"></script>
     <script>
         // You can also use "$(window).load(function() {"
         $(function () {
@@ -257,7 +256,7 @@
 
         });
     </script>
-    <script type="text/javascript" src="~/Assets/js/all.js"></script>
+    
     <script>
         $('ul.dropdown-menu li').hover(function () {
             $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
@@ -266,10 +265,8 @@
         });
     </script>
 
-    <!-- js -->
-    <script type="text/javascript" src="~/Assets/js/simplyCountdown.js"></script>
-    <link href="~/Assets/css/simplyCountdown.css" rel='stylesheet' type='text/css' />
-    <script>
+   
+    @*<script>
         var d = new Date();
         simplyCountdown('simply-countdown', {
             year: d.getFullYear(),
@@ -286,7 +283,7 @@
             month: d.getMonth() + 2,
             day: 25
         });
-    </script>
+    </script>*@
     <!--js-->
     <!--/tooltip -->
     <script>
@@ -308,8 +305,7 @@
     </script>
     <!--//tooltip -->
     <!-- Smooth-Scrolling-JavaScript -->
-    <script type="text/javascript" src="~/Assets/js/easing.js"></script>
-    <script type="text/javascript" src="~/Assets/js/move-top.js"></script>
+    
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
             $(".scroll, .navbar li a, .footer li a").click(function (event) {
@@ -343,12 +339,7 @@
         <span id="toTopHover" style="opacity: 1;"> </span>
     </a>
 
-    <!-- jQuery-Photo-filter-lightbox-Gallery-plugin -->
-    <script type="text/javascript" src="~/Assets/js/jquery-1.7.2.js"></script>
-    <script src="~/Assets/js/jquery.quicksand.js" type="text/javascript"></script>
-    <script src="~/Assets/js/script.js" type="text/javascript"></script>
-    <script src="~/Assets/js/jquery.prettyPhoto.js" type="text/javascript"></script>
-    <!-- //jQuery-Photo-filter-lightbox-Gallery-plugin -->
+    
 
     @*@Scripts.Render("~/bundles/jquery")*@
     @RenderSection("scripts", required: false)
