@@ -2,36 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 
-<script type="text/javascript">
 
-    $(document).ready(function () {
-        $("#adminLogin").click(function (e) {
-            e.preventDefault();
-            alert('sgdhshgd');
-            $.ajax({
-                type: "POST",
-                url: "/Home/Donor",
-                data: {
-                    id: $("#adminLogin").val(),
-                    email: $("#adminEmailAddress").val(),
-                    password: $("#adminPassword").val(),
-                },
-                success: function (result) {
-                    alert('ok');
-                },
-                error: function (result) {
-                    alert('error');
-                }
-            });
-        });
-
-function onAdminLoginButton(){
-    var email = document.getElementById("adminEmailAddress");
-    var password = document.getElementById("adminPassword");
-
-
-    }
-</script>
 
 <div class="top_header" id="home">
     <!-- Fixed navbar -->
@@ -162,7 +133,8 @@ function onAdminLoginButton(){
                     <div class="check-box two">
                         <input name="chekbox" type="checkbox" id="brand1" value="">
                     </div>
-                    <input type="submit" value="Submit" id="adminLogin" onclick="onAdminLoginButton();">
+                    <p id="lblmessage" style="color:red;"></p>
+                    <input type="button" value="Submit" id="adminLogin">
                 </form>
             </div>
         </div>
@@ -612,3 +584,39 @@ function onAdminLoginButton(){
     </div>
 </div>
 <!--//gallery-->
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#adminLogin').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Home/SignIn",
+                data: {
+                    email: $("#adminEmailAddress").val(),
+                    password: $("#adminPassword").val(),
+                },
+                success: function (result) {
+                    console.log(result.Result);
+                    if (result.Result == "Success") {
+                       // window.location.href("" ,"Account");
+                        location.href = '/Home/Donor/';
+
+                    }
+                    else {
+
+                        $('#lblmessage').text(result.Message);
+
+                    }
+                    
+                },
+                error: function (result) {
+                    alert('error');
+                }
+            });
+
+        })
+        
+    })
+
+</script>
