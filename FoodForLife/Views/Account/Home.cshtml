@@ -44,7 +44,6 @@
                 {
                   <h4>Completed Request:</h4>
                 }
-
                 <table class="table">
                     <thead>
                         <tr>
@@ -62,14 +61,15 @@
                         @foreach (var Donor in Model.lstDonationDetails)
                 {
 
-                    <tr class="active">
+                    <tr class="active tr-parent">
+                        <input type="hidden" class="hf-DonorId" value="@Donor.DonorId" />
                         <th scope="row"><a href="@Url.Action("DonationDetails","Donation", new { Id =  Donor.DonorId})">@Donor.DonorId</a> </th>
                         <td>@Donor.Name</td>
                         <td>@Donor.ContactNumber</td>
                         <td>@Donor.EventDate.ToShortDateString()</td>
                         <td>@Donor.PrimaryAssignee</td>
                         <td>@Donor.SecondaryAssignee</td>
-                        <td><a data-toggle="modal" data-target="#myModal" href="#">Process</a></td>
+                        <td><a data-toggle="modal" class="lnk-process" data-target="#myModal" href="#">Process</a></td>
                     </tr>
 
                 }
@@ -102,12 +102,14 @@
                 <div class="form-body">
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label"> Donor Request Id: <span id="spn-reqid"> 123456</span></label>
+                            <label class="control-label">Donor Request Id: <span id="spn-reqid"> 
+ 
+                              </span></label>
                         </div>
                         <div class="form-group">
-                            <label for="selector1" class="col-sm-2 control-label">Vendor</label>
+                            <label for="selector1" class="col-sm-2 control-label">Vendor Name:   </label>
                             <div class="col-sm-8">
-                                <select name="selector1" id="selector1" class="form-control1">
+                                <select name="selector1" id="vendorSelector" class="form-control1">
                                     <option selected="selected" value="0">Select Vendor</option>
                                     @foreach (var vendor in Model.lstVendors)
                                     {
@@ -116,23 +118,71 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="selector1" class="col-sm-2 control-label">Beneficiary Name:   </label>
+                            <div class="col-sm-8">
+                                <select name="selector1" id="beneficiarySelector" class="form-control1">
+                                    <option selected="selected" value="0">Select Beneficiary</option>
+                                    @foreach (var beneficiary in Model.lstNGO)
+                                    {
+                                        <option value="@beneficiary.NGOId">@beneficiary.NGOName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
                         <div class="row">
-                            <p style="color:red">Please select the vendor.</p>
+                            <p style="color:red" id="errorMsg">Please select the Vendor/Beneficiary.</p>
+                            <p style="color:darkgreen" id="successMsg">Vendor & Beneficiary assigned successfully to the request ID.</p>
+                            <br/>
                             <div class="col-md-10">
-                                <div class="col-md-5"> <button type="button" class="btn btn-default">Assign</button> </div>
-                                <div class="col-md-5"> <button type="button" class="btn btn-default">Cancel</button> </div>
+                                <div class="col-md-5"> <button type="button" id="vendorSubmit" class="btn btn-default">Assign</button> </div>
                             </div>
                         </div>
                          
                     </form>
                 </div>
-            </div>
+            </div>  
         </div>
 
     </div>
 </div>
 
 <script>
+
+
+    $(document).ready(function () {
+
+        $("#errorMsg").hide();
+        $("#successMsg").hide();
+
+        $('.lnk-process').click(function () {
+            var donorRequestId = $(this).parent().parent('.tr-parent').find('.hf-DonorId').val();
+            document.getElementById("spn-reqid").innerHTML = donorRequestId;
+        })
+
+        $('#vendorSubmit').click(function () {
+            var vendorValue = $("#vendorSelector").val();
+            var beneficiaryValue = $("#beneficiarySelector").val();
+           
+            if (vendorValue == 0 || beneficiaryValue == 0) {
+                $("#errorMsg").show();
+            }
+            else {
+                $("#successMsg").show();
+                $('#vendorSubmit').attr('disable', 'true');
+            }
+        });
+      
+       
+
+    })
+
+
+
+
+
+
     function myFunction() {
         document.getElementById("vendorForm").reset();
     }
