@@ -25,5 +25,7 @@ namespace FoodForLife.Data.Entity
         public virtual tblDonorRequest tblDonorRequest { get; set; }
         public virtual tblDonorRequest tblDonorRequest1 { get; set; }
         public virtual tblNGO tblNGO { get; set; }
+        public virtual tblVendor tblVendor { get; set; }
+        public virtual tblVendor tblVendor1 { get; set; }
     }
 }

@@ -14,6 +14,13 @@ namespace FoodForLife.Data.Entity
     
     public partial class tblVendor
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblVendor()
+        {
+            this.tblDonorRequestVendors = new HashSet<tblDonorRequestVendor>();
+            this.tblDonorRequestVendors1 = new HashSet<tblDonorRequestVendor>();
+        }
+    
         public long Id { get; set; }
         public string VendorName { get; set; }
         public string Phone { get; set; }
@@ -23,5 +30,10 @@ namespace FoodForLife.Data.Entity
         public bool IsActive { get; set; }
         public System.DateTime Createddate { get; set; }
         public System.DateTime ModifiedDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblDonorRequestVendor> tblDonorRequestVendors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblDonorRequestVendor> tblDonorRequestVendors1 { get; set; }
     }
 }

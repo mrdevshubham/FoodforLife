@@ -162,5 +162,29 @@ namespace FoodForLife.Data
         }
 
 
+        public bool SaveDonorRequestDAL(long RequestId, long VendorId, long nGoId,string Status, ref ResponseMessage oResponse)
+        {
+            try
+            {
+                using (var feedforlifeContext = new FeedforlifeEntities())
+                {
+                    feedforlifeContext.USP_UpdateDonorRequestDetails(RequestId, VendorId, nGoId, Status);
+                    oResponse.ResponseCode = 1;
+                    oResponse.Result = "Success";
+                    oResponse.Message = "Successfully updated the details.";
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                oResponse.ResponseCode = 0;
+                oResponse.Result = "Failure";
+                oResponse.Message = "Failed to connect to Database, Please try again.";
+                return false;
+            }
+
+        }
+
+
     }
 }

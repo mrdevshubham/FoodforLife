@@ -159,10 +159,10 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__DonorRequ__Vendo__70DDC3D8">
-          <End Role="tblDonorRequest" Type="Self.tblDonorRequest" Multiplicity="0..1" />
+          <End Role="tblVendors" Type="Self.tblVendors" Multiplicity="0..1" />
           <End Role="tblDonorRequestVendors" Type="Self.tblDonorRequestVendors" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblDonorRequest">
+            <Principal Role="tblVendors">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="tblDonorRequestVendors">
@@ -230,6 +230,18 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__tblDonorR__Vendo__0F624AF8">
+          <End Role="tblVendors" Type="Self.tblVendors" Multiplicity="0..1" />
+          <End Role="tblDonorRequestVendors" Type="Self.tblDonorRequestVendors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVendors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequestVendors">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__tblusersR__RoleI__5535A963">
           <End Role="mtblRoles" Type="Self.mtblRoles" Multiplicity="1" />
           <End Role="tblusersRole" Type="Self.tblusersRole" Multiplicity="*" />
@@ -279,6 +291,12 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
           <Parameter Name="RequestStatus" Type="varchar" Mode="In" />
           <Parameter Name="PrimaryAdminId" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="USP_UpdateDonorRequestDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RequestId" Type="bigint" Mode="In" />
+          <Parameter Name="VendorId" Type="bigint" Mode="In" />
+          <Parameter Name="NGoId" Type="bigint" Mode="In" />
+          <Parameter Name="Status" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="FeedforlifeModelStoreContainer">
           <EntitySet Name="mtblPartyType" EntityType="Self.mtblPartyType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mtblRoles" EntityType="Self.mtblRoles" Schema="dbo" store:Type="Tables" />
@@ -304,7 +322,7 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
             <End Role="tblDonorRequestVendors" EntitySet="tblDonorRequestVendors" />
           </AssociationSet>
           <AssociationSet Name="FK__DonorRequ__Vendo__70DDC3D8" Association="Self.FK__DonorRequ__Vendo__70DDC3D8">
-            <End Role="tblDonorRequest" EntitySet="tblDonorRequest" />
+            <End Role="tblVendors" EntitySet="tblVendors" />
             <End Role="tblDonorRequestVendors" EntitySet="tblDonorRequestVendors" />
           </AssociationSet>
           <AssociationSet Name="FK__tblAdminT__Admin__01142BA1" Association="Self.FK__tblAdminT__Admin__01142BA1">
@@ -326,6 +344,10 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
           <AssociationSet Name="FK__tblDonorR__Secon__05D8E0BE" Association="Self.FK__tblDonorR__Secon__05D8E0BE">
             <End Role="tblusers" EntitySet="tblusers" />
             <End Role="tblDonorRequest" EntitySet="tblDonorRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDonorR__Vendo__0F624AF8" Association="Self.FK__tblDonorR__Vendo__0F624AF8">
+            <End Role="tblVendors" EntitySet="tblVendors" />
+            <End Role="tblDonorRequestVendors" EntitySet="tblDonorRequestVendors" />
           </AssociationSet>
           <AssociationSet Name="FK__tblusersR__RoleI__5535A963" Association="Self.FK__tblusersR__RoleI__5535A963">
             <End Role="mtblRoles" EntitySet="mtblRoles" />
@@ -388,6 +410,8 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
           <NavigationProperty Name="tblDonorRequest1" Relationship="FeedforlifeModel.FK__DonorRequ__Vendo__70DDC3D8" FromRole="tblDonorRequestVendor" ToRole="tblDonorRequest" />
           <Property Name="NGoId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="tblNGO" Relationship="FeedforlifeModel.FK__tblDonorR__NGoId__0D7A0286" FromRole="tblDonorRequestVendor" ToRole="tblNGO" />
+          <NavigationProperty Name="tblVendor" Relationship="FeedforlifeModel.FK__DonorRequ__Vendo__70DDC3D81" FromRole="tblDonorRequestVendor" ToRole="tblVendor" />
+          <NavigationProperty Name="tblVendor1" Relationship="FeedforlifeModel.FK__tblDonorR__Vendo__0F624AF8" FromRole="tblDonorRequestVendor" ToRole="tblVendor" />
           </EntityType>
         <EntityType Name="tbluser">
           <Key>
@@ -433,6 +457,8 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Createddate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblDonorRequestVendors" Relationship="FeedforlifeModel.FK__DonorRequ__Vendo__70DDC3D81" FromRole="tblVendor" ToRole="tblDonorRequestVendor" />
+          <NavigationProperty Name="tblDonorRequestVendors1" Relationship="FeedforlifeModel.FK__tblDonorR__Vendo__0F624AF8" FromRole="tblVendor" ToRole="tblDonorRequestVendor" />
         </EntityType>
         <Association Name="FK__tblusersR__RoleI__5535A963">
           <End Role="mtblRoles" Type="Self.mtblRole" Multiplicity="1" />
@@ -529,6 +555,20 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
             <Parameter Name="RequestId" Mode="In" Type="Int64" />
             <Parameter Name="VendorId" Mode="In" Type="Int64" />
             <Parameter Name="NGoId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <AssociationSet Name="FK__DonorRequ__Vendo__70DDC3D81" Association="FeedforlifeModel.FK__DonorRequ__Vendo__70DDC3D81">
+            <End Role="tblVendor" EntitySet="tblVendors" />
+            <End Role="tblDonorRequestVendor" EntitySet="tblDonorRequestVendors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDonorR__Vendo__0F624AF8" Association="FeedforlifeModel.FK__tblDonorR__Vendo__0F624AF8">
+            <End Role="tblVendor" EntitySet="tblVendors" />
+            <End Role="tblDonorRequestVendor" EntitySet="tblDonorRequestVendors" />
+          </AssociationSet>
+          <FunctionImport Name="USP_UpdateDonorRequestDetails">
+            <Parameter Name="RequestId" Mode="In" Type="Int64" />
+            <Parameter Name="VendorId" Mode="In" Type="Int64" />
+            <Parameter Name="NGoId" Mode="In" Type="Int64" />
+            <Parameter Name="Status" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="tblAdminTerritory">
@@ -675,6 +715,30 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
             </Principal>
             <Dependent Role="tblDonorRequestVendor">
               <PropertyRef Name="NGoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DonorRequ__Vendo__70DDC3D81">
+          <End Type="FeedforlifeModel.tblVendor" Role="tblVendor" Multiplicity="0..1" />
+          <End Type="FeedforlifeModel.tblDonorRequestVendor" Role="tblDonorRequestVendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVendor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequestVendor">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDonorR__Vendo__0F624AF8">
+          <End Type="FeedforlifeModel.tblVendor" Role="tblVendor" Multiplicity="0..1" />
+          <End Type="FeedforlifeModel.tblDonorRequestVendor" Role="tblDonorRequestVendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVendor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequestVendor">
+              <PropertyRef Name="VendorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -832,6 +896,7 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="USP_AssignVendor" FunctionName="FeedforlifeModel.Store.USP_AssignVendor" />
+          <FunctionImportMapping FunctionImportName="USP_UpdateDonorRequestDetails" FunctionName="FeedforlifeModel.Store.USP_UpdateDonorRequestDetails" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

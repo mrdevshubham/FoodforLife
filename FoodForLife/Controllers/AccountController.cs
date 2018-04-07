@@ -36,7 +36,7 @@ namespace FoodForLife.Controllers
 
         public ActionResult AssignVendor(long RequestId, long VendorId, long nGoId)
         {
-            if (RequestId > 0 && VendorId > 0)
+            if (RequestId > 0 && VendorId > 0 && nGoId > 0)
             {
                 bool Result = (new DonorBAL()).AssignVendorBAL(RequestId, VendorId, nGoId, ref oResponse);
             }
@@ -48,6 +48,22 @@ namespace FoodForLife.Controllers
             return Json(new {oResponse});
         }
 
+
+
+        public ActionResult EditDonorRequestDetails(long RequestId, long VendorId, long nGoId, int Status)
+        {
+            if (RequestId > 0 && VendorId > 0 && nGoId > 0)
+            {
+                string strStatus = Status == 1 ? RequestStatus.PENDING : RequestStatus.COMPLETED;
+                bool Result = (new DonorBAL()).SaveDonorRequestBAL(RequestId, VendorId, nGoId, strStatus, ref oResponse);
+            }
+            else
+            {
+                oResponse.Result = "Failure";
+                oResponse.Message = "Oops! There is some problem with the page, Please try to reload the page and try again.";
+            }
+            return Json(new { oResponse });
+        }
 
 
 

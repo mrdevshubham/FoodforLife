@@ -24,6 +24,8 @@
         <AssociationConnector Association="FeedforlifeModel.FK__tblDonorR__Secon__05D8E0BE" />
         <EntityTypeShape EntityType="FeedforlifeModel.tblNGO" Width="1.5" PointX="3.375" PointY="0.75" />
         <AssociationConnector Association="FeedforlifeModel.FK__tblDonorR__NGoId__0D7A0286" />
+        <AssociationConnector Association="FeedforlifeModel.FK__DonorRequ__Vendo__70DDC3D81" />
+        <AssociationConnector Association="FeedforlifeModel.FK__tblDonorR__Vendo__0F624AF8" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

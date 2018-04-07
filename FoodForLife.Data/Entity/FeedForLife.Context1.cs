@@ -131,5 +131,26 @@ namespace FoodForLife.Data.Entity
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_AssignVendor", requestIdParameter, vendorIdParameter, nGoIdParameter);
         }
+    
+        public virtual int USP_UpdateDonorRequestDetails(Nullable<long> requestId, Nullable<long> vendorId, Nullable<long> nGoId, string status)
+        {
+            var requestIdParameter = requestId.HasValue ?
+                new ObjectParameter("RequestId", requestId) :
+                new ObjectParameter("RequestId", typeof(long));
+    
+            var vendorIdParameter = vendorId.HasValue ?
+                new ObjectParameter("VendorId", vendorId) :
+                new ObjectParameter("VendorId", typeof(long));
+    
+            var nGoIdParameter = nGoId.HasValue ?
+                new ObjectParameter("NGoId", nGoId) :
+                new ObjectParameter("NGoId", typeof(long));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("Status", status) :
+                new ObjectParameter("Status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_UpdateDonorRequestDetails", requestIdParameter, vendorIdParameter, nGoIdParameter, statusParameter);
+        }
     }
 }
