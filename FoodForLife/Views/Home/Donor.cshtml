@@ -17,12 +17,10 @@
     <link rel="stylesheet" href="~/Assets/css/bootstrap-datetimepicker.css">
     <link rel="stylesheet" href="~/Assets/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-   
 
-    
 
     <style>
         .button {
@@ -41,206 +39,225 @@
         .button3 {
             background-color: #f44336;
         }
-        /* Red */ 
     </style>
 
 </head>
 <body>
-    <div class="container">
-        <h2 class="tittle_w3_agileinfo">Donor Details</h2>
-        <div class="row">
-            <h4>Personal Details</h4>
-            <div class="input-group input-group-icon">
-                <input type="text" id="name" placeholder="Full Name" maxlength="50" required />
-                <div class="input-icon"><i class="fa fa-user"></i></div>
-            </div>
-            <div class="input-group input-group-icon">
-                <input type="number" id="contact" placeholder="Contact" maxlength="10" required />
-                <div class="input-icon">
-                    <i class="material-icons">&#xe0b0;</i>
-                </div>
-            </div>
-            <div class="input-group input-group-icon">
-                <input type="email" id="email" placeholder="Email Id" maxlength="50" required />
-                <div class="input-icon"><i class="fa fa-envelope"></i></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-half">
-                <h4>Date of Birth</h4>
-                <div class="input-group">
-                    <input id="dateDOB" placeholder="DOB" required />   
-                </div>
-            </div>  
-            <div class="col-half">
-                <h4>Wedding Anniversary</h4>
-                <div class="input-group">
-                    <input id="dateAnniversary" placeholder="Wedding Anniversary" required />
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <h4>Function Details</h4>
-            <div class="input-group input-group-icon">
-                <input id="functionDate" placeholder="Function Date" required  />
-                <div class="input-icon"><i class="fa fa-credit-card"></i></div>
-            </div>
-
+    <form action="@Url.Action("SaveDonation","Home")" method="post" id="myForm" >
+        <div class="container">
+            <h2 class="tittle_w3_agileinfo">Donor Details</h2>
+            <div class="row">
+                <h4>Personal Details</h4>
                 <div class="input-group input-group-icon">
-                    <input type="textarea" id="venueAddress" placeholder="Venue Details" maxlength="500" required />
+                    <input type="text" id="name" name="Name" placeholder="Full Name" maxlength="50" required />
+                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                </div>
+                <div class="input-group input-group-icon">
+                    <input type="number" id="contact" name="ContactNumber" placeholder="Contact" maxlength="10" required />
+                    <div class="input-icon">
+                        <i class="material-icons">&#xe0b0;</i>
+                    </div>
+                </div>
+                <div class="input-group input-group-icon">
+                    <input type="email" id="email" name="EmailId" placeholder="Email Id" maxlength="50" required />
+                    <div class="input-icon"><i class="fa fa-envelope"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-half">
+                    <h4>Date of Birth</h4>
+                    <div class="input-group">
+                        <input id="dateDOB" name="DateOfBirth" placeholder="DOB" required />
+                    </div>
+                </div>
+                <div class="col-half">
+                    <h4>Wedding Anniversary</h4>
+                    <div class="input-group">
+                        <input id="dateAnniversary" name="AnniveraryDate" placeholder="Wedding Anniversary" required />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <h4>Function Details</h4>
+                <div class="input-group input-group-icon">
+                    <input id="functionDate" name="EventDate" placeholder="Function Date" required />
                     <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
 
+                <div class="input-group input-group-icon">
+                    <input type="textarea" id="venueAddress" name="EventAddress" placeholder="Venue Details" maxlength="500" required />
+                    <div class="input-icon"><i class="material-icons">&#xe567;</i></div>
+                </div>
+
 
 
                 <div class="input-group input-group-icon">
-                    <input type="text" id="city" placeholder="City" maxlength="50" required />
+                    <input type="text" id="city" name="City" placeholder="City" maxlength="50" required />
                     <div class="input-icon"><i class="fa fa-user"></i></div>
                 </div>
                 <div class="input-group input-group-icon">
-                    <input type="number" id="pincode" placeholder="Pincode" maxlength="50" required />
+                    <input type="number" id="pincode" name="PinCode" placeholder="Pincode" maxlength="50" required />
                     <div class="input-icon"><i class="fa fa-user"></i></div>
                 </div>
             </div>
 
 
-        <div class="input-group input-group-icon">
-            <select id="partyType" required class="col-dropdown">
-                <option value="">--Select Party Type--</option>
-                <option value="1">Birthday Party</option>
-                <option value="2">Wedding</option>
-                <option value="3">Kitty Party / Get Together</option>
-                <option value="4">Death Ceremony</option>
-                <option value="5">Devotional Ceremony</option>
-                <option value="6">Others</option>
-            </select>
-        </div>
-
-        <div class="input-group input-group-icon">
-            <input type="text" id="otherTextId" placeholder="Others(Please Specify)" maxlength="50" required />
-            <div class="input-icon"><i class="fa fa-user"></i></div>
-        </div>
-
-        <div class="input-group input-group-icon">
-            <select id="foodType" required class="col-dropdown-right">
-                <option value="">--Select Food Type--</option>
-                <option value="1">Vegetarian</option>
-                <option value="2">Non-Vegetarian</option>
-            </select>
-        </div>
-
-        <div class="row">
-            <h4>Logistics Details</h4>
-
             <div class="input-group input-group-icon">
-                <input type="number" id="servingsInvited" placeholder="Number of servings invited" maxlength="9" required />
-                <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                <select id="partyType" name="PartyType" required class="col-dropdown">
+                    <option value="">--Select Party Type--</option>
+                    <option value="1">Birthday Party</option>
+                    <option value="2">Wedding</option>
+                    <option value="3">Kitty Party / Get Together</option>
+                    <option value="4">Death Ceremony</option>
+                    <option value="5">Devotional Ceremony</option>
+                    <option value="6">Others</option>
+                </select>
             </div>
+
             <div class="input-group input-group-icon">
-                <input type="text" id="timeCollection" placeholder="Time Of Collection" maxlength="20" required />
+                <input type="text" id="otherTextId" name="otherTextId" placeholder="Others(Please Specify)" maxlength="50" required />
                 <div class="input-icon"><i class="fa fa-user"></i></div>
             </div>
+
             <div class="input-group input-group-icon">
-                <input type="number" id="expectedServings" placeholder="Expected Servings Left" maxlength="9" />
-                <div class="input-icon"><i class="fa fa-user"></i></div>
+                <select id="foodType" name="FoodType" required class="col-dropdown-right">
+                    <option value="">--Select Food Type--</option>
+                    <option value="1">Vegetarian</option>
+                    <option value="2">Non-Vegetarian</option>
+                </select>
             </div>
+
+            <div class="row">
+                <h4>Logistics Details</h4>
+
+                <div class="input-group input-group-icon">
+                    <input type="number" id="servingsInvited" name="TotalServingInvited" placeholder="Number of servings invited" maxlength="9" required />
+                    <div class="input-icon"><i style="font-size:24px" class="fa">&#xf0c0;</i></div>
+                </div>
+                <div class="input-group input-group-icon">
+                    <input type="text" id="timeCollection" name="CollectionTime" placeholder="Time Of Collection" maxlength="20" required />
+                    <div class="input-icon"><span class="glyphicon">&#xe023;</span></div>
+                </div>
+                <div class="input-group input-group-icon">
+                    <input type="number" id="expectedServings" name="TotalServingLeft" placeholder="Expected Servings Left" maxlength="9" />
+                    <div class="input-icon"><i style="font-size:24px" class="fa">&#xf0c0;</i></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <h4>Consent</h4>
+                <div class="input-group">
+                    <input type="checkbox" id="terms" name="terms"/>
+                    <label for="terms">I agree to receive the promotional emails and messages from Feed4Life for my contributions to the society.</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-group input-group-icon">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="submit" class="button" id="donorSubmitButton" name="donorSubmitButton">Submit</button>
+                    <button type="button" onclick="reset()" id="resetDonorButton" name="resetDonorButton" class="button button3">Reset</button>
+                </div>
+            </div>
+
         </div>
 
-        <div class="row">
-            <h4>Consent</h4>
-            <div class="input-group">
-                <input type="checkbox" id="terms" />
-                <label for="terms">I agree to receive the promotional emails and messages from Feed4Life for my contributions to the society.</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-group input-group-icon">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="button" class="button" id="donorSubmitButton">Submit</button>
-                <button type="button" onclick="reset()" id="resetDonorButton" class="button button3">Reset</button>
-            </div>
-        </div>
+        @*<script src="js/index.js"></script>*@
 
-    </div>
 
-    @*<script src="js/index.js"></script>*@
-   
-   
+        <script type="text/javascript">
+            var productType = document.getElementById('otherTextId').value;
 
-    <script>
-$('#partyType').on('change', function() {
-  if ( this.value == '6')
-  {
-  document.getElementById('otherTextId').style.display = 'block';
-  }
-  else
-  {
-  document.getElementById('otherTextId').style.display = 'none';
-  }
-});
+        </script>
 
-$(document).ready(function() {
- document.getElementById('otherTextId').style.display = 'none';
-        $("#datepicker").datepicker();
-        $("#dateDOB").datepicker();
-    $("#dateAnniversary").datepicker();
 
-    $('#adminLogin').click(function () {
-        $.ajax({
-            type: "POST",
-            url: "/Donor/SaveDonation",
-            data: {
-                
-                Name: $("#name").val(),
-                ContactNumber: $("#contact").val(),
-                EmailId: $("#email").val(),
-                DateOfBirth: $("#dateDOB").val(),
-                AnniveraryDate: $("#dateAnniversary").val(),
-                EventName: $("#name").val(),
-                EventDate: $("#functionDate").val(),
-                EventAddress: $("#venueAddress").val(),
-                City: $("#city").val(),
-                State: $("#name").val(),
-                PinCode: $("#pincode").val(),
-                PartyType: $("#partyType").val(),
-                FoodType: $("#foodType").val(),
-                TotalServingInvited: $("#servingsInvited").val(),
-                CollectionTime: $("#timeCollection").val(),
-                TotalServingLeft: $("#name").val(),
-                PrimaryAssignee: $("#name").val(),
-                SecondaryAssignee: $("#name").val(),
-                Isactive: $("#name").val(),
-                CreatedDate: $("#name").val(),
-                ModifiedDate: $("#name").val(),
+        <script>
+            $('#partyType').on('change', function () {
+                //if (this.value == '1') {
+                //    $('#partyType').val("Birthday Party");
+                //}
+                //if (this.value == '2') {
+                //    $('#partyType').val("Wedding");
+                //}
+                //if (this.value == '3') {
+                //    $('#partyType').val("Kitty Party / Get Together");
+                //}
+                //if (this.value == '4') {
+                //    $('#partyType').val("Death Ceremony");
+                //}
+                //if (this.value == '5') {
+                //    $('#partyType').val("Devotional Ceremony");
+                //}
+                //if (this.value == '6') {
+                //    document.getElementById('otherTextId').style.display = 'block';
+                //}
+                //else {
+                //    document.getElementById('otherTextId').style.display = 'none';
+                //}
+               
+            });
 
-            },
-            success: function (result) {
-                console.log(result.Result);
-                if (result.Result == "Success") {
-                    alert("Your Request has been submitted successfully. Thanks for your Donation !! We will reach out to you shortly.");
-                    //location.href = '/Home/Donor/';
-                }
-                else {
+            $(document).ready(function () {
+                //document.getElementById('otherTextId').style.display = 'none';
+                $("#functionDate").datepicker();
+                $("#dateDOB").datepicker();
+                $("#dateAnniversary").datepicker();
 
-                    $('#lblmessage').text(result.Message);
+                $('').click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Donor/SaveDonation",
+                        data: {
 
-                }
+                            Name: $("#name").val(),
+                            ContactNumber: $("#contact").val(),
+                            EmailId: $("#email").val(),
+                            DateOfBirth: $("#dateDOB").val(),
+                            AnniveraryDate: $("#dateAnniversary").val(),
+                            EventName: $("#name").val(),
+                            EventDate: $("#functionDate").val(),
+                            EventAddress: $("#venueAddress").val(),
+                            City: $("#city").val(),
+                            State: $("#name").val(),
+                            PinCode: $("#pincode").val(),
+                            PartyType: $("#partyType").val(),
+                            FoodType: $("#foodType").val(),
+                            TotalServingInvited: $("#servingsInvited").val(),
+                            CollectionTime: $("#timeCollection").val(),
+                            TotalServingLeft: $("#name").val(),
+                            PrimaryAssignee: $("#name").val(),
+                            SecondaryAssignee: $("#name").val(),
+                            Isactive: $("#name").val(),
+                            CreatedDate: $("#name").val(),
+                            ModifiedDate: $("#name").val(),
 
-            },
-            error: function (result) {
-                alert('error');
+                        },
+                        success: function (result) {
+                            console.log(result.Result);
+                            if (result.Result == "Success") {
+                                alert("Your Request has been submitted successfully. Thanks for your Donation !! We will reach out to you shortly.");
+                                //location.href = '/Home/Donor/';
+                            }
+                            else {
+
+                                $('#lblmessage').text(result.Message);
+
+                            }
+
+                        },
+                        error: function (result) {
+                            alert('error');
+                        }
+                    });
+
+                })
+            });
+
+            function reset() {
+                document.getElementById("myForm").reset();
+
             }
-        });
-
-    })
-});
-
-function reset() {
-    document.getElementById("myForm").reset();
-    
-}
-    </script>
-
+        </script>
+</form>
 </body>
 </html>
 
