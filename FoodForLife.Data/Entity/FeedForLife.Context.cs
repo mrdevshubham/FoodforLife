@@ -33,5 +33,6 @@ namespace FoodForLife.Data.Entity
         public virtual DbSet<tblusersRole> tblusersRoles { get; set; }
         public virtual DbSet<tblVendor> tblVendors { get; set; }
         public virtual DbSet<tblDonorRequest> tblDonorRequests { get; set; }
+        public virtual DbSet<tblAdminTerritory> tblAdminTerritories { get; set; }
     }
 }

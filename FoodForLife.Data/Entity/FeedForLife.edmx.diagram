@@ -18,6 +18,10 @@
         <AssociationConnector Association="FeedforlifeModel.FK__tblDonorR__Party__5FB337D6" />
         <AssociationConnector Association="FeedforlifeModel.FK__DonorRequ__Reque__6FE99F9F" />
         <AssociationConnector Association="FeedforlifeModel.FK__DonorRequ__Vendo__70DDC3D8" />
+        <EntityTypeShape EntityType="FeedforlifeModel.tblAdminTerritory" Width="1.5" PointX="10" PointY="5.125" />
+        <AssociationConnector Association="FeedforlifeModel.FK__tblAdminT__Admin__01142BA1" />
+        <AssociationConnector Association="FeedforlifeModel.FK__tblDonorR__Prima__04E4BC85" />
+        <AssociationConnector Association="FeedforlifeModel.FK__tblDonorR__Secon__05D8E0BE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

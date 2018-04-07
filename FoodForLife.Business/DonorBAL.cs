@@ -13,9 +13,9 @@ namespace FoodForLife.Business
     {
 
 
-        public bool SaveDonorDetailsBAL(clsDonationDetails oclsDonationDetails)
+        public bool SaveDonorDetailsBAL(clsDonationDetails oclsDonationDetails, ref ResponseMessage oResponse)
         {
-            return (new DonorDAL()).SaveDonorDetails(oclsDonationDetails);
+            return (new DonorDAL()).SaveDonorDetails(oclsDonationDetails, ref oResponse);
         }
 
         public List<clsDonationDetails> GetDonorBAL(string RequestStatus)

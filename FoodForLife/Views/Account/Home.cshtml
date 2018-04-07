@@ -38,19 +38,27 @@
                     <tbody>
 
                         @foreach (var Donor in Model)
-            {
+    {
 
-                <tr class="active">
-                    <th scope="row"><a href="@Url.Action("Details","Donation", new { Id =  Donor.DonorId})">@Donor.DonorId</a> </th>
-                    <td>@Donor.Name</td>
-                    <td>@Donor.ContactNumber</td>
-                    <td>@Donor.EventDate.ToShortDateString()</td>
-                    <td>@Donor.PrimaryAssignee</td>
-                    <td>@Donor.SecondaryAssignee</td>
-                    <td><a href="#">View</a></td>
-                </tr>
-                
-            }
+                    <tr class="active">
+                        <th scope="row"><a href="@Url.Action("DonationDetails","Donation", new { Id =  Donor.DonorId})">@Donor.DonorId</a> </th>
+                        <td>@Donor.Name</td>
+                        <td>@Donor.ContactNumber</td>
+                        <td>@Donor.EventDate.ToShortDateString()</td>
+                        <td>@Donor.PrimaryAssignee</td>
+                        <td>@Donor.SecondaryAssignee</td>
+                        <td><a href="#">View</a></td>
+                    </tr>
+
+}
+       <script>
+        function showHideBlock() {
+            var donorDetails = document.getElementById("donorDetailsView");
+            var vendorDetails = document.getElementById("vendorDetailsView");
+            donorDetails.style.display === "block";
+            vendorDetails.style.display === "none";
+        }
+       </script>
 
                     </tbody>
 

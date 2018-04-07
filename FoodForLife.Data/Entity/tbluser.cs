@@ -18,6 +18,9 @@ namespace FoodForLife.Data.Entity
         public tbluser()
         {
             this.tblusersRoles = new HashSet<tblusersRole>();
+            this.tblAdminTerritories = new HashSet<tblAdminTerritory>();
+            this.tblDonorRequests = new HashSet<tblDonorRequest>();
+            this.tblDonorRequests1 = new HashSet<tblDonorRequest>();
         }
     
         public long Id { get; set; }
@@ -32,5 +35,11 @@ namespace FoodForLife.Data.Entity
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblusersRole> tblusersRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblAdminTerritory> tblAdminTerritories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblDonorRequest> tblDonorRequests { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblDonorRequest> tblDonorRequests1 { get; set; }
     }
 }

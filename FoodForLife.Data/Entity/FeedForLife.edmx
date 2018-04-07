@@ -37,6 +37,22 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblAdminTerritory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="AdminId" />
+            <PropertyRef Name="AssignedPinCodes" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminId" Type="bigint" Nullable="false" />
+          <Property Name="AssignedPinCodes" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="tblDonorRequest">
           <Key>
             <PropertyRef Name="Id" />
@@ -62,6 +78,8 @@
           <Property Name="Createddate" Type="datetime" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="RequestStatus" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PrimaryAdminId" Type="bigint" Nullable="false" />
+          <Property Name="SecondaryAdminId" Type="bigint" />
         </EntityType>
         <EntityType Name="tblDonorRequestVendors">
           <Key>
@@ -137,6 +155,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__tblAdminT__Admin__01142BA1">
+          <End Role="tblusers" Type="Self.tblusers" Multiplicity="1" />
+          <End Role="tblAdminTerritory" Type="Self.tblAdminTerritory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblusers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAdminTerritory">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__tblDonorR__Party__5FB337D6">
           <End Role="mtblPartyType" Type="Self.mtblPartyType" Multiplicity="0..1" />
           <End Role="tblDonorRequest" Type="Self.tblDonorRequest" Multiplicity="*" />
@@ -146,6 +176,30 @@
             </Principal>
             <Dependent Role="tblDonorRequest">
               <PropertyRef Name="PartyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDonorR__Prima__04E4BC85">
+          <End Role="tblusers" Type="Self.tblusers" Multiplicity="1" />
+          <End Role="tblDonorRequest" Type="Self.tblDonorRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblusers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequest">
+              <PropertyRef Name="PrimaryAdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDonorR__Secon__05D8E0BE">
+          <End Role="tblusers" Type="Self.tblusers" Multiplicity="0..1" />
+          <End Role="tblDonorRequest" Type="Self.tblDonorRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblusers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequest">
+              <PropertyRef Name="SecondaryAdminId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -182,6 +236,16 @@
           <EntitySet Name="tblusers" EntityType="Self.tblusers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblusersRole" EntityType="Self.tblusersRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblVendors" EntityType="Self.tblVendors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAdminTerritory" EntityType="Self.tblAdminTerritory" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblAdminTerritory].[Id] AS [Id], 
+    [tblAdminTerritory].[AdminId] AS [AdminId], 
+    [tblAdminTerritory].[AssignedPinCodes] AS [AssignedPinCodes], 
+    [tblAdminTerritory].[IsActive] AS [IsActive], 
+    [tblAdminTerritory].[CreatedDate] AS [CreatedDate], 
+    [tblAdminTerritory].[ModifiedDate] AS [ModifiedDate]
+    FROM [dbo].[tblAdminTerritory] AS [tblAdminTerritory]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__DonorRequ__Reque__6FE99F9F" Association="Self.FK__DonorRequ__Reque__6FE99F9F">
             <End Role="tblDonorRequest" EntitySet="tblDonorRequest" />
             <End Role="tblDonorRequestVendors" EntitySet="tblDonorRequestVendors" />
@@ -190,8 +254,20 @@
             <End Role="tblDonorRequest" EntitySet="tblDonorRequest" />
             <End Role="tblDonorRequestVendors" EntitySet="tblDonorRequestVendors" />
           </AssociationSet>
+          <AssociationSet Name="FK__tblAdminT__Admin__01142BA1" Association="Self.FK__tblAdminT__Admin__01142BA1">
+            <End Role="tblusers" EntitySet="tblusers" />
+            <End Role="tblAdminTerritory" EntitySet="tblAdminTerritory" />
+          </AssociationSet>
           <AssociationSet Name="FK__tblDonorR__Party__5FB337D6" Association="Self.FK__tblDonorR__Party__5FB337D6">
             <End Role="mtblPartyType" EntitySet="mtblPartyType" />
+            <End Role="tblDonorRequest" EntitySet="tblDonorRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDonorR__Prima__04E4BC85" Association="Self.FK__tblDonorR__Prima__04E4BC85">
+            <End Role="tblusers" EntitySet="tblusers" />
+            <End Role="tblDonorRequest" EntitySet="tblDonorRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDonorR__Secon__05D8E0BE" Association="Self.FK__tblDonorR__Secon__05D8E0BE">
+            <End Role="tblusers" EntitySet="tblusers" />
             <End Role="tblDonorRequest" EntitySet="tblDonorRequest" />
           </AssociationSet>
           <AssociationSet Name="FK__tblusersR__RoleI__5535A963" Association="Self.FK__tblusersR__RoleI__5535A963">
@@ -268,6 +344,9 @@
           <Property Name="Createddate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="tblusersRoles" Relationship="Self.FK__tblusersR__UserI__5441852A" FromRole="tblusers" ToRole="tblusersRole" />
+          <NavigationProperty Name="tblAdminTerritories" Relationship="FeedforlifeModel.FK__tblAdminT__Admin__01142BA1" FromRole="tbluser" ToRole="tblAdminTerritory" />
+          <NavigationProperty Name="tblDonorRequests" Relationship="FeedforlifeModel.FK__tblDonorR__Prima__04E4BC85" FromRole="tbluser" ToRole="tblDonorRequest" />
+          <NavigationProperty Name="tblDonorRequests1" Relationship="FeedforlifeModel.FK__tblDonorR__Secon__05D8E0BE" FromRole="tbluser" ToRole="tblDonorRequest" />
         </EntityType>
         <EntityType Name="tblusersRole">
           <Key>
@@ -349,6 +428,19 @@
             <End Role="tblDonorRequest" EntitySet="tblDonorRequests" />
             <End Role="tblDonorRequestVendor" EntitySet="tblDonorRequestVendors" />
           </AssociationSet>
+          <EntitySet Name="tblAdminTerritories" EntityType="FeedforlifeModel.tblAdminTerritory" />
+          <AssociationSet Name="FK__tblAdminT__Admin__01142BA1" Association="FeedforlifeModel.FK__tblAdminT__Admin__01142BA1">
+            <End Role="tbluser" EntitySet="tblusers" />
+            <End Role="tblAdminTerritory" EntitySet="tblAdminTerritories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDonorR__Prima__04E4BC85" Association="FeedforlifeModel.FK__tblDonorR__Prima__04E4BC85">
+            <End Role="tbluser" EntitySet="tblusers" />
+            <End Role="tblDonorRequest" EntitySet="tblDonorRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblDonorR__Secon__05D8E0BE" Association="FeedforlifeModel.FK__tblDonorR__Secon__05D8E0BE">
+            <End Role="tbluser" EntitySet="tblusers" />
+            <End Role="tblDonorRequest" EntitySet="tblDonorRequests" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblDonorRequest">
           <Key>
@@ -378,6 +470,10 @@
           <NavigationProperty Name="tblDonorRequestVendors" Relationship="FeedforlifeModel.FK__DonorRequ__Reque__6FE99F9F" FromRole="tblDonorRequest" ToRole="tblDonorRequestVendor" />
           <NavigationProperty Name="tblDonorRequestVendors1" Relationship="FeedforlifeModel.FK__DonorRequ__Vendo__70DDC3D8" FromRole="tblDonorRequest" ToRole="tblDonorRequestVendor" />
           <Property Name="RequestStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryAdminId" Type="Int64" Nullable="false" />
+          <Property Name="SecondaryAdminId" Type="Int64" />
+          <NavigationProperty Name="tbluser" Relationship="FeedforlifeModel.FK__tblDonorR__Prima__04E4BC85" FromRole="tblDonorRequest" ToRole="tbluser" />
+          <NavigationProperty Name="tbluser1" Relationship="FeedforlifeModel.FK__tblDonorR__Secon__05D8E0BE" FromRole="tblDonorRequest" ToRole="tbluser" />
         </EntityType>
         <Association Name="FK__tblDonorR__Party__5FB337D6">
           <End Type="FeedforlifeModel.mtblPartyType" Role="mtblPartyType" Multiplicity="0..1" />
@@ -412,6 +508,57 @@
             </Principal>
             <Dependent Role="tblDonorRequestVendor">
               <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblAdminTerritory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="AdminId" />
+            <PropertyRef Name="AssignedPinCodes" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminId" Type="Int64" Nullable="false" />
+          <Property Name="AssignedPinCodes" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbluser" Relationship="FeedforlifeModel.FK__tblAdminT__Admin__01142BA1" FromRole="tblAdminTerritory" ToRole="tbluser" />
+        </EntityType>
+        <Association Name="FK__tblAdminT__Admin__01142BA1">
+          <End Type="FeedforlifeModel.tbluser" Role="tbluser" Multiplicity="1" />
+          <End Type="FeedforlifeModel.tblAdminTerritory" Role="tblAdminTerritory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbluser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAdminTerritory">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDonorR__Prima__04E4BC85">
+          <End Type="FeedforlifeModel.tbluser" Role="tbluser" Multiplicity="1" />
+          <End Type="FeedforlifeModel.tblDonorRequest" Role="tblDonorRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbluser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequest">
+              <PropertyRef Name="PrimaryAdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblDonorR__Secon__05D8E0BE">
+          <End Type="FeedforlifeModel.tbluser" Role="tbluser" Multiplicity="0..1" />
+          <End Type="FeedforlifeModel.tblDonorRequest" Role="tblDonorRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbluser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblDonorRequest">
+              <PropertyRef Name="SecondaryAdminId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -513,6 +660,8 @@
           <EntitySetMapping Name="tblDonorRequests">
             <EntityTypeMapping TypeName="FeedforlifeModel.tblDonorRequest">
               <MappingFragment StoreEntitySet="tblDonorRequest">
+                <ScalarProperty Name="SecondaryAdminId" ColumnName="SecondaryAdminId" />
+                <ScalarProperty Name="PrimaryAdminId" ColumnName="PrimaryAdminId" />
                 <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="Createddate" ColumnName="Createddate" />
@@ -533,6 +682,18 @@
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
                 <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
                 <ScalarProperty Name="DonorName" ColumnName="DonorName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAdminTerritories">
+            <EntityTypeMapping TypeName="FeedforlifeModel.tblAdminTerritory">
+              <MappingFragment StoreEntitySet="tblAdminTerritory">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AssignedPinCodes" ColumnName="AssignedPinCodes" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

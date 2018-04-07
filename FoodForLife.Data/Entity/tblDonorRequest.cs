@@ -42,11 +42,15 @@ namespace FoodForLife.Data.Entity
         public System.DateTime Createddate { get; set; }
         public System.DateTime ModifiedDate { get; set; }
         public string RequestStatus { get; set; }
+        public long PrimaryAdminId { get; set; }
+        public Nullable<long> SecondaryAdminId { get; set; }
     
         public virtual mtblPartyType mtblPartyType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblDonorRequestVendor> tblDonorRequestVendors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblDonorRequestVendor> tblDonorRequestVendors1 { get; set; }
+        public virtual tbluser tbluser { get; set; }
+        public virtual tbluser tbluser1 { get; set; }
     }
 }

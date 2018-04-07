@@ -10,6 +10,8 @@ namespace FoodForLife.Controllers
 {
     public class HomeController : Controller
     {
+        ResponseMessage oResponse = new ResponseMessage();
+
         public ActionResult Index()
         {
             return View();
@@ -37,11 +39,19 @@ namespace FoodForLife.Controllers
             return View();
         }
 
+        /*Section to save Donation Details*/
         [HttpPost]
         public ActionResult SaveDonation(clsDonationDetails oclsDonationDetails)
         {
-            var Result = (new DonorBAL()).SaveDonorDetailsBAL(oclsDonationDetails);
-            return View();
+            var isSuccess = (new DonorBAL()).SaveDonorDetailsBAL(oclsDonationDetails, ref oResponse);
+            if (isSuccess)
+            {
+                oResponse.Result = "Success";
+                oResponse.Message = "Thank you for your contribution.";
+                return Json(new { oResponse });
+            }
+            else
+                return Json(new {oResponse});
         }
 
 
