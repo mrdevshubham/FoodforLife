@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using FoodForLife.Business;
 using FoodForLife.Model;
+using System.Web.Security;
 
 namespace FoodForLife.Controllers
 {
@@ -14,30 +15,6 @@ namespace FoodForLife.Controllers
 
         public ActionResult Index()
         {
-            //clsDonationDetails oclsDonationDetails = new clsDonationDetails();
-            //oclsDonationDetails.Name = "Priya";
-            //oclsDonationDetails.ContactNumber = "8985874784";
-            //oclsDonationDetails.EmailId = "priya@sunlife.com";
-
-            //oclsDonationDetails.DateOfBirth = DateTime.Now;
-            //oclsDonationDetails.AnniveraryDate = DateTime.Now;
-            //oclsDonationDetails.EventDate = DateTime.Now;
-
-            //oclsDonationDetails.EventName = "Marriage";
-            //oclsDonationDetails.EventAddress = "Address";
-            //oclsDonationDetails.City = "BSW";
-            //oclsDonationDetails.State = "UP";
-            //oclsDonationDetails.PinCode = "243601";
-            //oclsDonationDetails.PartyTypeId = 101;
-            //oclsDonationDetails.FoodType = "VEG";
-            //oclsDonationDetails.TotalServingInvited = 52;
-            ////otblDonorRequest.CollectionTime = resultadoRetrasoIngresoAM;
-            //oclsDonationDetails.TotalServingLeft = 5;
-
-
-            //var isSuccess = (new DonorBAL()).SaveDonorDetailsBAL(oclsDonationDetails, ref oResponse);
-
-
             return View();
         }
 
@@ -50,12 +27,21 @@ namespace FoodForLife.Controllers
             {
                 clsUser oclsUser = new clsUser();
                 bool IsValidUser = (new LoginBAL()).Authenticate(email, password, ref oclsUser);
-                Session["user"] = oclsUser;
+                FormsAuthentication.SetAuthCookie(oclsUser.Email, false);
+                Session["UserInfo"] = oclsUser;
                 if (IsValidUser)
                     return Json(new { Result = "Success" });
                 else
                     return Json(new { Result = "Failure", Message = "The Email/Password combination is not correct." });
             }
+        }
+
+        public ActionResult SignOut()
+        {
+            FormsAuthentication.SetAuthCookie("Email", false);
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Donor()

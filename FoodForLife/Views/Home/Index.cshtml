@@ -13,7 +13,7 @@
 
                 <div class="logo_wthree_agile">
                     <h1>
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="@Url.Action("Index","Home")">
                             <img src="~/Assets/images/logo.JPG" alt="Feed4Life Logo" />Feed4Life
                             <span class="desc">You donate.We feed.</span>
                         </a>
@@ -600,7 +600,7 @@
                     console.log(result.Result);
                     if (result.Result == "Success") {
                        
-                        location.href = '/Donor/Home/';
+                        location.href = '/Account/Home/';
 
                     }
                     else {

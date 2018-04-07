@@ -9,6 +9,7 @@ using FoodForLife.Business;
 
 namespace FoodForLife.Controllers
 {
+    [Authorize]
     public class DonationController : Controller
     {
         // GET: Donation

@@ -177,36 +177,39 @@
                 $("#errorMsg").hide();
                 $('#vendorSubmit').attr('disable', 'true');
 
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Account/AssignVendor",
+                    data: {
+                        RequestId: donorRequestId,
+                        VendorId: $("#vendorSelector").val(),
+                    },
+                    success: function (result) {
+                        console.log(result.Result);
+                        if (result.Result == "Success") {
+
+                            location.href = '/Account/Home/NEW';
+
+                        }
+                        else {
+
+                            $('#lblmessage').text(result.Message);
+
+                        }
+
+                    },
+                    error: function (result) {
+                        alert('error');
+                    }
+                });
+
                
             }
         });
       
 
-        $.ajax({
-            type: "POST",
-            url: "/Account/AssignVendor",
-            data: {
-                RequestId: donorRequestId,
-                VendorId: $("#vendorSelector").val(),
-            },
-            success: function (result) {
-                console.log(result.Result);
-                if (result.Result == "Success") {
-
-                    location.href = '/Account/Home/NEW';
-
-                }
-                else {
-
-                    $('#lblmessage').text(result.Message);
-
-                }
-
-            },
-            error: function (result) {
-                alert('error');
-            }
-        });
+        
 
 
 

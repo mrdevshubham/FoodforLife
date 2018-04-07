@@ -9,6 +9,7 @@ using FoodForLife.Model;
 
 namespace FoodForLife.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         // GET: Account
