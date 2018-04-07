@@ -56,7 +56,9 @@
             </div>
             <div class="input-group input-group-icon">
                 <input type="number" id="contact" placeholder="Contact" maxlength="10" required />
-                <div class="input-icon"><i class="fa fa-envelope"></i></div>
+                <div class="input-icon">
+                    <i class="material-icons">&#xe0b0;</i>
+                </div>
             </div>
             <div class="input-group input-group-icon">
                 <input type="email" id="email" placeholder="Email Id" maxlength="50" required />
@@ -80,7 +82,7 @@
         <div class="row">
             <h4>Function Details</h4>
             <div class="input-group input-group-icon">
-                <input id="datepicker" placeholder="Function Date" required  />
+                <input id="functionDate" placeholder="Function Date" required  />
                 <div class="input-icon"><i class="fa fa-credit-card"></i></div>
             </div>
 
@@ -154,8 +156,8 @@
         <div class="row">
             <div class="input-group input-group-icon">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button type="submit" class="button">Submit</button>
-                <button type="button" onclick="reset()" class="button button3">Reset</button>
+                <button type="button" class="button" id="donorSubmitButton">Submit</button>
+                <button type="button" onclick="reset()" id="resetDonorButton" class="button button3">Reset</button>
             </div>
         </div>
 
@@ -181,7 +183,56 @@ $(document).ready(function() {
  document.getElementById('otherTextId').style.display = 'none';
         $("#datepicker").datepicker();
         $("#dateDOB").datepicker();
-        $("#dateAnniversary").datepicker();
+    $("#dateAnniversary").datepicker();
+
+    $('#adminLogin').click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Donor/SaveDonation",
+            data: {
+                
+                Name: $("#name").val(),
+                ContactNumber: $("#contact").val(),
+                EmailId: $("#email").val(),
+                DateOfBirth: $("#dateDOB").val(),
+                AnniveraryDate: $("#dateAnniversary").val(),
+                EventName: $("#name").val(),
+                EventDate: $("#functionDate").val(),
+                EventAddress: $("#venueAddress").val(),
+                City: $("#city").val(),
+                State: $("#name").val(),
+                PinCode: $("#pincode").val(),
+                PartyType: $("#partyType").val(),
+                FoodType: $("#foodType").val(),
+                TotalServingInvited: $("#servingsInvited").val(),
+                CollectionTime: $("#timeCollection").val(),
+                TotalServingLeft: $("#name").val(),
+                PrimaryAssignee: $("#name").val(),
+                SecondaryAssignee: $("#name").val(),
+                Isactive: $("#name").val(),
+                CreatedDate: $("#name").val(),
+                ModifiedDate: $("#name").val(),
+
+            },
+            success: function (result) {
+                console.log(result.Result);
+                if (result.Result == "Success") {
+                    alert("Your Request has been submitted successfully. Thanks for your Donation !! We will reach out to you shortly.");
+                    //location.href = '/Home/Donor/';
+                }
+                else {
+
+                    $('#lblmessage').text(result.Message);
+
+                }
+
+            },
+            error: function (result) {
+                alert('error');
+            }
+        });
+
+    })
 });
 
 function reset() {
