@@ -34,13 +34,16 @@ namespace FoodForLife.Controllers
 
         public ActionResult AssignVendor(long RequestId, long VendorId)
         {
-
-
-
-            oResponse.Result = "Success";
-            oResponse.Message = "Vendor assigned successfully.";
+            if (RequestId > 0 && VendorId > 0)
+            {
+                bool Result = (new DonorBAL()).AssignVendorBAL(RequestId, VendorId, ref oResponse);
+            }
+            else
+            {
+                oResponse.Result = "Failure";
+                oResponse.Message = "Oops! There is some problem with the page, Please try to reload the page and try again.";
+            }
             return Json(new { oResponse });
-
         }
 
 

@@ -138,6 +138,34 @@ namespace FoodForLife.Data
         }
 
 
+        public bool AssignVendorDAL(long RequestId, long VendorId, ref ResponseMessage oResponse)
+        {
+            try
+            {
+                using (var feedforlifeContext = new FeedforlifeEntities())
+                {
+                    tblDonorRequestVendor OtblDonorRequestVendor = new tblDonorRequestVendor();
+                    OtblDonorRequestVendor.RequestId = RequestId;
+                    OtblDonorRequestVendor.VendorId = VendorId;
+                    feedforlifeContext.tblDonorRequestVendors.Add(OtblDonorRequestVendor);
+                    feedforlifeContext.SaveChanges();
+
+                    oResponse.ResponseCode = 1;
+                    oResponse.Result = "Success";
+                    oResponse.Message = "Successfully Assigned vendor to the Donor Request.";
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                oResponse.ResponseCode = 0;
+                oResponse.Result = "Failure";
+                oResponse.Message = "Failed to connect to Database, Please try again.";
+                return false;
+            }
+            
+        }
 
 
     }

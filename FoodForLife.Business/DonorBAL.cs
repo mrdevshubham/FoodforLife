@@ -28,6 +28,11 @@ namespace FoodForLife.Business
             return (new DonorDAL()).GetDonorDetails(Id);
         }
 
+        public bool AssignVendorBAL(long RequestId, long VendorId, ref ResponseMessage oResponse)
+        {
+            return (new DonorDAL()).AssignVendorDAL(RequestId, VendorId, ref oResponse);
+        }
+
 
     }
 }
