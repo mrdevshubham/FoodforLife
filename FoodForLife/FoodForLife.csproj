@@ -211,6 +211,7 @@
     <Content Include="Assets\images\tick.png" />
     <Content Include="Assets\images\top_move.png" />
     <Content Include="Assets\js\all.js" />
+    <Content Include="Assets\js\bootstrap-timepicker.js" />
     <Content Include="Assets\js\bootstrap.js" />
     <Content Include="Assets\js\easing.js" />
     <Content Include="Assets\js\easy-responsive-tabs.js" />

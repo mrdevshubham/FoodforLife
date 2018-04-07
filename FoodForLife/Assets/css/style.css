@@ -3278,3 +3278,12 @@ p.read_para i {
 }
 
 /*--//responsive--*/
+
+/*Shubham Css*/
+.display-hide{
+    display: none !important;
+}
+
+.display{
+    display : inline-block;
+}

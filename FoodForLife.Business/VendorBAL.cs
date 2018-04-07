@@ -12,14 +12,14 @@ namespace FoodForLife.Business
     public class VendorBAL
     {
 
-        public bool SaveVendorDetailsBAL(clsDonationDetails oclsDonationDetails)
+        public bool SaveVendorDetailsBAL(clsVendor oclsVendor)
         {
-            return (new DonorDAL()).SaveDonorDetails(oclsDonationDetails);
+            return (new VendorDAL()).SaveVendorDetails(oclsVendor);
         }
 
-        public List<clsDonationDetails> GetVendorBAL(long Id)
+        public List<clsVendor> GetVendorBAL(long Id)
         {
-            return (new DonorDAL()).GetDonor(Id);
+            return (new VendorDAL()).GetVendor(Id);
         }
 
 
