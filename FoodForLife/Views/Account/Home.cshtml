@@ -155,26 +155,60 @@
 
         $("#errorMsg").hide();
         $("#successMsg").hide();
+        var donorRequestId = "";
+        var vendorValue = "";
+        var beneficiaryValue = "";
 
         $('.lnk-process').click(function () {
-            var donorRequestId = $(this).parent().parent('.tr-parent').find('.hf-DonorId').val();
+            donorRequestId = $(this).parent().parent('.tr-parent').find('.hf-DonorId').val();
             document.getElementById("spn-reqid").innerHTML = donorRequestId;
         })
 
         $('#vendorSubmit').click(function () {
-            var vendorValue = $("#vendorSelector").val();
-            var beneficiaryValue = $("#beneficiarySelector").val();
+            vendorValue = $("#vendorSelector").val();
+            beneficiaryValue = $("#beneficiarySelector").val();
            
             if (vendorValue == 0 || beneficiaryValue == 0) {
                 $("#errorMsg").show();
+                $("#successMsg").hide();
             }
             else {
                 $("#successMsg").show();
+                $("#errorMsg").hide();
                 $('#vendorSubmit').attr('disable', 'true');
+
+               
             }
         });
       
-       
+
+        $.ajax({
+            type: "POST",
+            url: "/Account/AssignVendor",
+            data: {
+                RequestId: donorRequestId,
+                VendorId: $("#vendorSelector").val(),
+            },
+            success: function (result) {
+                console.log(result.Result);
+                if (result.Result == "Success") {
+
+                    location.href = '/Account/Home/NEW';
+
+                }
+                else {
+
+                    $('#lblmessage').text(result.Message);
+
+                }
+
+            },
+            error: function (result) {
+                alert('error');
+            }
+        });
+
+
 
     })
 
