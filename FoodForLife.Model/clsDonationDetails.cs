@@ -9,7 +9,7 @@ namespace FoodForLife.Model
     public class clsDonationDetails
     {
 
-        public int DonorId { get; set; }
+        public long DonorId { get; set; }
         public string Name { get; set; }
         public string ContactNumber { get; set; }
         public string EmailId { get; set; }
@@ -21,11 +21,21 @@ namespace FoodForLife.Model
         public string City { get; set; }
         public string State { get; set; }
         public string PinCode { get; set; }
+
+        public long PartyTypeId { get; set; }
         public string PartyType { get; set; }
+
         public string FoodType { get; set; }
         public int TotalServingInvited { get; set; }
-        public DateTime CollectionTime { get; set; }
+        public TimeSpan CollectionTime { get; set; }
         public int TotalServingLeft { get; set; }
+
+        public string PrimaryAssignee { get; set; }
+        public string SecondaryAssignee { get; set; }
+
+        public string RequestStatus { get; set; }
+
+        public bool Consent { get; set; }
         public bool Isactive { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }

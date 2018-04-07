@@ -10,8 +10,34 @@ namespace FoodForLife.Controllers
 {
     public class HomeController : Controller
     {
+        ResponseMessage oResponse = new ResponseMessage();
+
         public ActionResult Index()
         {
+            //clsDonationDetails oclsDonationDetails = new clsDonationDetails();
+            //oclsDonationDetails.Name = "Priya";
+            //oclsDonationDetails.ContactNumber = "8985874784";
+            //oclsDonationDetails.EmailId = "priya@sunlife.com";
+
+            //oclsDonationDetails.DateOfBirth = DateTime.Now;
+            //oclsDonationDetails.AnniveraryDate = DateTime.Now;
+            //oclsDonationDetails.EventDate = DateTime.Now;
+
+            //oclsDonationDetails.EventName = "Marriage";
+            //oclsDonationDetails.EventAddress = "Address";
+            //oclsDonationDetails.City = "BSW";
+            //oclsDonationDetails.State = "UP";
+            //oclsDonationDetails.PinCode = "243601";
+            //oclsDonationDetails.PartyTypeId = 101;
+            //oclsDonationDetails.FoodType = "VEG";
+            //oclsDonationDetails.TotalServingInvited = 52;
+            ////otblDonorRequest.CollectionTime = resultadoRetrasoIngresoAM;
+            //oclsDonationDetails.TotalServingLeft = 5;
+
+
+            //var isSuccess = (new DonorBAL()).SaveDonorDetailsBAL(oclsDonationDetails, ref oResponse);
+
+
             return View();
         }
 
@@ -37,11 +63,23 @@ namespace FoodForLife.Controllers
             return View();
         }
 
+        /*Section to save Donation Details*/
         [HttpPost]
         public ActionResult SaveDonation(clsDonationDetails oclsDonationDetails)
         {
-            var Result = (new DonorBAL()).SaveDonorDetailsBAL(oclsDonationDetails);
-            return View();
+            var isSuccess = (new DonorBAL()).SaveDonorDetailsBAL(oclsDonationDetails, ref oResponse);
+            if (isSuccess)
+            {
+                ViewBag.Code = 1;
+                ViewBag.Message = "Your request has been saved successfully, Thank you for your contribution.";
+                return View("~/Views/Home/Donor.cshtml");
+            }
+            else
+            {
+                ViewBag.Code = 0;
+                ViewBag.Message = oResponse.Message;
+                return View("~/Views/Home/Donor.cshtml");
+            }
         }
 
 
