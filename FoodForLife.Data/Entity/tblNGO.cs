@@ -14,6 +14,12 @@ namespace FoodForLife.Data.Entity
     
     public partial class tblNGO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblNGO()
+        {
+            this.tblDonorRequestVendors = new HashSet<tblDonorRequestVendor>();
+        }
+    
         public long Id { get; set; }
         public string NGOName { get; set; }
         public string NGOAddress { get; set; }
@@ -23,5 +29,8 @@ namespace FoodForLife.Data.Entity
         public bool IsActive { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public System.DateTime ModifiedDate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblDonorRequestVendor> tblDonorRequestVendors { get; set; }
     }
 }

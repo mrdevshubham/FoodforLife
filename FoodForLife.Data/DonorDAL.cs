@@ -138,22 +138,16 @@ namespace FoodForLife.Data
         }
 
 
-        public bool AssignVendorDAL(long RequestId, long VendorId, ref ResponseMessage oResponse)
+        public bool AssignVendorDAL(long RequestId, long VendorId, long nGoId, ref ResponseMessage oResponse)
         {
             try
             {
                 using (var feedforlifeContext = new FeedforlifeEntities())
                 {
-                    tblDonorRequestVendor OtblDonorRequestVendor = new tblDonorRequestVendor();
-                    OtblDonorRequestVendor.RequestId = RequestId;
-                    OtblDonorRequestVendor.VendorId = VendorId;
-                    feedforlifeContext.tblDonorRequestVendors.Add(OtblDonorRequestVendor);
-                    feedforlifeContext.SaveChanges();
-
+                    feedforlifeContext.USP_AssignVendor(RequestId, VendorId, nGoId);
                     oResponse.ResponseCode = 1;
                     oResponse.Result = "Success";
                     oResponse.Message = "Successfully Assigned vendor to the Donor Request.";
-
                     return true;
                 }
             }

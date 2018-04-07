@@ -114,5 +114,22 @@ namespace FoodForLife.Data.Entity
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_SaveDonationDetails", donorNameParameter, contactNumberParameter, emailIdParameter, dOBParameter, weddingAnniversaryParameter, eventNameParameter, eventDateParameter, eventAddressParameter, cityParameter, stateParameter, pinCodeParameter, partyTypeIdParameter, foodTypeParameter, totalServingsInvitedParameter, collectionTimeParameter, totalServingsLeftParameter, requestStatusParameter, primaryAdminIdParameter);
         }
+    
+        public virtual int USP_AssignVendor(Nullable<long> requestId, Nullable<long> vendorId, Nullable<long> nGoId)
+        {
+            var requestIdParameter = requestId.HasValue ?
+                new ObjectParameter("RequestId", requestId) :
+                new ObjectParameter("RequestId", typeof(long));
+    
+            var vendorIdParameter = vendorId.HasValue ?
+                new ObjectParameter("VendorId", vendorId) :
+                new ObjectParameter("VendorId", typeof(long));
+    
+            var nGoIdParameter = nGoId.HasValue ?
+                new ObjectParameter("NGoId", nGoId) :
+                new ObjectParameter("NGoId", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("USP_AssignVendor", requestIdParameter, vendorIdParameter, nGoIdParameter);
+        }
     }
 }

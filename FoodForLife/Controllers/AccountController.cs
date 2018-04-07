@@ -34,11 +34,11 @@ namespace FoodForLife.Controllers
         }
 
 
-        public ActionResult AssignVendor(long RequestId, long VendorId)
+        public ActionResult AssignVendor(long RequestId, long VendorId, long nGoId)
         {
             if (RequestId > 0 && VendorId > 0)
             {
-                bool Result = (new DonorBAL()).AssignVendorBAL(RequestId, VendorId, ref oResponse);
+                bool Result = (new DonorBAL()).AssignVendorBAL(RequestId, VendorId, nGoId, ref oResponse);
             }
             else
             {

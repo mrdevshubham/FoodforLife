@@ -20,8 +20,10 @@ namespace FoodForLife.Data.Entity
         public bool IsActive { get; set; }
         public System.DateTime Createddate { get; set; }
         public System.DateTime ModifiedDate { get; set; }
+        public long NGoId { get; set; }
     
         public virtual tblDonorRequest tblDonorRequest { get; set; }
         public virtual tblDonorRequest tblDonorRequest1 { get; set; }
+        public virtual tblNGO tblNGO { get; set; }
     }
 }

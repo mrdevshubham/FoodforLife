@@ -69,7 +69,15 @@
                         <td>@Donor.EventDate.ToShortDateString()</td>
                         <td>@Donor.PrimaryAssignee</td>
                         <td>@Donor.SecondaryAssignee</td>
-                        <td><a data-toggle="modal" class="lnk-process" data-target="#myModal" href="#">Process</a></td>
+                        @if (RequestStatus == "NEW")
+                        {
+                            <td><a data-toggle="modal" class="lnk-process" data-target="#myModal" href="#">Process</a></td>
+                        }
+                        else if (RequestStatus == "PENDING")
+                        {
+                            <td><a data-toggle="modal" class="lnk-process" data-target="#editModal" href="#">Edit</a></td>
+                        }
+                        
                     </tr>
 
                 }
@@ -96,7 +104,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Assign Vendor</h4>
+                <h4 class="modal-title">Assign Vendor and Beneficiary</h4>
             </div>
             <div class="modal-body">
                 <div class="form-body">
@@ -148,6 +156,76 @@
     </div>
 </div>
 
+<!--Edit Modal -->
+<div class="modal fade" id="editModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Vendor and Beneficiary Details</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label">
+                                Donor Request Id: <span id="spn-reqid"></span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="selector1" class="col-sm-2 control-label">Vendor Name:   </label>
+                            <div class="col-sm-8">
+                                <select name="selector1" id="vendorSelector" class="form-control1">
+                                    <option selected="selected" value="0">Select Vendor</option>
+                                    @foreach (var vendor in Model.lstVendors)
+                                    {
+                                        <option value="@vendor.Id">@vendor.VendorName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="selector1" class="col-sm-2 control-label">Beneficiary Name:   </label>
+                            <div class="col-sm-8">
+                                <select name="selector1" id="beneficiarySelector" class="form-control1">
+                                    <option selected="selected" value="0">Select Beneficiary</option>
+                                    @foreach (var beneficiary in Model.lstNGO)
+                                    {
+                                        <option value="@beneficiary.NGOId">@beneficiary.NGOName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="selector1" class="col-sm-2 control-label">Beneficiary Name:   </label>
+                            <div class="col-sm-8">
+                                <select name="selector1" id="beneficiarySelector" class="form-control1">
+                                    <option selected="selected" value="1">In Progress</option>
+                                    <option value="2">Completed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p style="color:red" id="errorMsg">Please select the Vendor/Beneficiary.</p>
+                            <p style="color:darkgreen" id="successMsg">Vendor & Beneficiary assigned successfully to the request ID.</p>
+                            <br />
+                            <div class="col-md-10">
+                                <div class="col-md-5"> <button type="button" id="vendorSubmit" class="btn btn-default">Assign</button> </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <script>
 
 
@@ -173,8 +251,7 @@
                 $("#successMsg").hide();
             }
             else {
-                $("#successMsg").show();
-                $("#errorMsg").hide();
+               
                 $('#vendorSubmit').attr('disable', 'true');
 
 
@@ -184,17 +261,22 @@
                     data: {
                         RequestId: donorRequestId,
                         VendorId: $("#vendorSelector").val(),
+                        nGoId: beneficiaryValue
                     },
                     success: function (result) {
-                        console.log(result.Result);
-                        if (result.Result == "Success") {
+                        //console.log(result);
+                        //console.log(result.oResponse.Result);
 
-                            location.href = '/Account/Home/NEW';
+                        if (result.oResponse.Result == "Success") {
+                            $("#successMsg").show();
+                            $("#errorMsg").hide();
+                            window.location.reload();
 
                         }
                         else {
 
-                            $('#lblmessage').text(result.Message);
+                            $("#errorMsg").show();
+                            $("#successMsg").hide();
 
                         }
 
@@ -207,11 +289,6 @@
                
             }
         });
-      
-
-        
-
-
 
     })
 
