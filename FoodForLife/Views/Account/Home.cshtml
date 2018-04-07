@@ -171,13 +171,13 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <label class="control-label">
-                                Donor Request Id: <span id="spn-reqid"></span>
+                                Donor Request Id: <span id="spn-reqid-edit"></span>
                             </label>
                         </div>
                         <div class="form-group">
                             <label for="selector1" class="col-sm-2 control-label">Vendor Name:   </label>
                             <div class="col-sm-8">
-                                <select name="selector1" id="vendorSelector" class="form-control1">
+                                <select name="selector1" id="editVendorSelector" class="form-control1">
                                     <option selected="selected" value="0">Select Vendor</option>
                                     @foreach (var vendor in Model.lstVendors)
                                     {
@@ -190,7 +190,7 @@
                         <div class="form-group">
                             <label for="selector1" class="col-sm-2 control-label">Beneficiary Name:   </label>
                             <div class="col-sm-8">
-                                <select name="selector1" id="beneficiarySelector" class="form-control1">
+                                <select name="selector2" id="editBeneficiarySelector" class="form-control1">
                                     <option selected="selected" value="0">Select Beneficiary</option>
                                     @foreach (var beneficiary in Model.lstNGO)
                                     {
@@ -203,18 +203,18 @@
                         <div class="form-group">
                             <label for="selector1" class="col-sm-2 control-label">Beneficiary Name:   </label>
                             <div class="col-sm-8">
-                                <select name="selector1" id="beneficiarySelector" class="form-control1">
+                                <select name="selector3" id="statusSelector" class="form-control1">
                                     <option selected="selected" value="1">In Progress</option>
                                     <option value="2">Completed</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row">
-                            <p style="color:red" id="errorMsg">Please select the Vendor/Beneficiary.</p>
-                            <p style="color:darkgreen" id="successMsg">Vendor & Beneficiary assigned successfully to the request ID.</p>
+                            <p style="color:red" id="editErrorMsg">Please select the Vendor/Beneficiary.</p>
+                            <p style="color:darkgreen" id="editSuccessMsg">Vendor & Beneficiary assigned successfully to the request ID.</p>
                             <br />
                             <div class="col-md-10">
-                                <div class="col-md-5"> <button type="button" id="vendorSubmit" class="btn btn-default">Assign</button> </div>
+                                <div class="col-md-5"> <button type="button" id="updateSubmit" class="btn btn-default">Update</button> </div>
                             </div>
                         </div>
 
@@ -233,9 +233,14 @@
 
         $("#errorMsg").hide();
         $("#successMsg").hide();
+        $("#editErrorMsg").hide();
+        $("#editSuccessMsg").hide();
         var donorRequestId = "";
         var vendorValue = "";
         var beneficiaryValue = "";
+        var editvendorValue = "";
+        var editbeneficiaryValue = "";
+        var statusSelector = "";
 
         $('.lnk-process').click(function () {
             donorRequestId = $(this).parent().parent('.tr-parent').find('.hf-DonorId').val();
@@ -289,6 +294,59 @@
                
             }
         });
+
+
+        //updateSubmit
+        $('#updateSubmit').click(function () {
+            editvendorValue = $("#editVendorSelector").val();
+            editbeneficiaryValue = $("#editBeneficiarySelector").val();
+            statusSelectorVal = $("#statusSelector").val();
+
+            if (vendorValue == 0 || beneficiaryValue == 0) {
+                $("#editErrorMsg").show();
+                $("#editSuccessMsg").hide();
+            }
+            else {
+
+                $('#updateSubmit').attr('disable', 'true');
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Account/AssignVendor/PENDING",
+                    data: {
+                        RequestId: donorRequestId,
+                        VendorId: $("#updateSubmit").val(),
+                        nGoId: beneficiaryValue,
+                        status: statusSelectorVal
+                    },
+                    success: function (result) {
+                        //console.log(result);
+                        //console.log(result.oResponse.Result);
+
+                        if (result.oResponse.Result == "Success") {
+                            $("#editSuccessMsg").show();
+                            $("#editErrorMsg").hide();
+                            window.location.reload();
+
+                        }
+                        else {
+
+                            $("#editErrorMsg").show();
+                            $("#editSuccessMsg").hide();
+
+                        }
+
+                    },
+                    error: function (result) {
+                        alert('error');
+                    }
+                });
+
+
+            }
+        });
+
 
     })
 
