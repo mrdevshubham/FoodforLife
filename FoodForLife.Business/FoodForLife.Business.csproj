@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DonorBAL.cs" />
     <Compile Include="LoginBAL.cs" />
+    <Compile Include="ngoBAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VendorBAL.cs" />
   </ItemGroup>

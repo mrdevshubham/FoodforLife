@@ -23,6 +23,7 @@ namespace FoodForLife.Controllers
                 HomeModel oHomeModel = new HomeModel();
                 oHomeModel.lstDonationDetails = (new DonorBAL()).GetDonorBAL(Id);
                 oHomeModel.lstVendors = (new VendorBAL().GetVendorBAL(0));
+                oHomeModel.lstNGO = (new ngoBAL().GetNGOBAL(0));
                 return View(oHomeModel);
             }
             else
@@ -43,7 +44,7 @@ namespace FoodForLife.Controllers
                 oResponse.Result = "Failure";
                 oResponse.Message = "Oops! There is some problem with the page, Please try to reload the page and try again.";
             }
-            return Json(new { oResponse });
+            return Json(new {oResponse});
         }
 
 

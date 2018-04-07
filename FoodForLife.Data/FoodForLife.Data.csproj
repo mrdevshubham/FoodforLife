@@ -50,10 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DonorDAL.cs" />
-    <Compile Include="Entity\FeedForLife.Context.cs" />
+    <Compile Include="Entity\FeedForLife.Context1.cs" />
     <Compile Include="Entity\FeedForLife.cs" />
     <Compile Include="Entity\FeedForLife.Designer.cs">
       <DependentUpon>FeedForLife.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\FeedForLife1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FeedForLife.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entity\mtblPartyType.cs">
       <DependentUpon>FeedForLife.tt</DependentUpon>
@@ -73,6 +78,9 @@
     <Compile Include="Entity\tblDonorRequestVendor.cs">
       <DependentUpon>FeedForLife.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\tblNGO.cs">
+      <DependentUpon>FeedForLife.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\tbluser.cs">
       <DependentUpon>FeedForLife.tt</DependentUpon>
     </Compile>
@@ -83,6 +91,7 @@
       <DependentUpon>FeedForLife.tt</DependentUpon>
     </Compile>
     <Compile Include="LoginDAL.cs" />
+    <Compile Include="ngoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VendorDAL.cs" />
   </ItemGroup>

@@ -92,6 +92,20 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
           <Property Name="Createddate" Type="datetime" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblNGO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NGOName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NGOAddress" Type="varchar" MaxLength="100" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="ContactPerson" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblusers">
           <Key>
             <PropertyRef Name="Id" />
@@ -253,6 +267,7 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDonorRequest" EntityType="Self.tblDonorRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDonorRequestVendors" EntityType="Self.tblDonorRequestVendors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblNGO" EntityType="Self.tblNGO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblusers" EntityType="Self.tblusers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblusersRole" EntityType="Self.tblusersRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblVendors" EntityType="Self.tblVendors" Schema="dbo" store:Type="Tables" />
@@ -481,6 +496,7 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
             <Parameter Name="RequestStatus" Mode="In" Type="String" />
             <Parameter Name="PrimaryAdminId" Mode="In" Type="Int64" />
           </FunctionImport>
+          <EntitySet Name="tblNGOes" EntityType="FeedforlifeModel.tblNGO" />
           </EntityContainer>
         <EntityType Name="tblAdminTerritory">
           <Key>
@@ -602,6 +618,20 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tblNGO">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NGOName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NGOAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -739,6 +769,21 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="USP_SaveDonationDetails" FunctionName="FeedforlifeModel.Store.USP_SaveDonationDetails" />
+          <EntitySetMapping Name="tblNGOes">
+            <EntityTypeMapping TypeName="FeedforlifeModel.tblNGO">
+              <MappingFragment StoreEntitySet="tblNGO">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="NGOAddress" ColumnName="NGOAddress" />
+                <ScalarProperty Name="NGOName" ColumnName="NGOName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

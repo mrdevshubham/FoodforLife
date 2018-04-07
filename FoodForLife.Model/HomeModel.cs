@@ -12,9 +12,11 @@ namespace FoodForLife.Model
         {
             this.lstDonationDetails = new List<clsDonationDetails>();
             this.lstVendors = new List<clsVendor>();
+            this.lstNGO = new List<clsNGO>();
         }
 
         public List<clsDonationDetails> lstDonationDetails { get; set; }
         public List<clsVendor> lstVendors { get; set; }
+        public List<clsNGO> lstNGO { get; set; }
     }
 }
