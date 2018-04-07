@@ -14,11 +14,19 @@ namespace FoodForLife.Controllers
         // GET: Account
         
 
-        public ActionResult Home()
+        public ActionResult Home(string Id)
         {
-            List<clsDonationDetails> lstDonationDetails = new List<clsDonationDetails>();
-            lstDonationDetails = (new DonorBAL()).GetDonorBAL(0);
-            return View(lstDonationDetails);
+            if (Id == RequestStatus.NEW || Id == RequestStatus.PENDING || Id == RequestStatus.COMPLETED)
+            {
+                ViewBag.RequestStatus = Id;
+                List<clsDonationDetails> lstDonationDetails = new List<clsDonationDetails>();
+                lstDonationDetails = (new DonorBAL()).GetDonorBAL(Id);
+                return View(lstDonationDetails);
+            }
+            else
+            {
+                return RedirectToAction("Home",new { Id = RequestStatus.NEW });
+            }
         }
 
     }

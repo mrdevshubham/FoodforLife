@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    string RequestStatus = ViewBag.RequestStatus;
 }
 
 <!-- main content start-->
@@ -9,7 +10,19 @@
     <div class="main-page">
         <div class="tables">
             <div class="bs-example widget-shadow" data-example-id="contextual-table">
-                <h4>New Request:</h4>
+                @if (RequestStatus == "NEW")
+                {
+                  <h4>New Request:</h4>
+                }
+                else if (RequestStatus == "PENDING")
+                {
+                  <h4>Pending Request:</h4>
+                }
+                else if (RequestStatus == "COMPLETED")
+                {
+                  <h4>Completed Request:</h4>
+                }
+
                 <table class="table">
                     <thead>
                         <tr>
@@ -23,32 +36,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="active">
-                            <th scope="row"><a href="@Url.Action("Details","Donation")">1</a> </th>
-                            <td>User1</td>
-                            <td>9999</td>
-                            <td>12 June 2018</td>
-                            <td>Admin1</td>
-                            <td>Admin2</td>
-                            <td><a href="#">View</a></td>
-                        </tr>
 
                         @foreach (var Donor in Model)
-    {
+            {
 
-                        <tr class="active">
-                            <th scope="row"><a href="@Url.Action("Details","Donation", new { Id =  Donor.DonorId })">1</a> </th>
-                            <th scope="row"><a href="@Url.Action("Details","Donation", new { Id =  Donor.DonorId})"></a> @Donor.DonorId</th>
-                            <td>@Donor.Name</td>
-                            <td>@Donor.ContactNumber</td>
-                            <td>@Donor.EventDate.ToShortDateString()</td>
-                            <td>@Donor.PrimaryAssignee</td>
-                            <td>@Donor.SecondaryAssignee</td>
-                            <td><a href="#">View</a></td>
-                        </tr>
-}
+                <tr class="active">
+                    <th scope="row"><a href="@Url.Action("Details","Donation", new { Id =  Donor.DonorId})">@Donor.DonorId</a> </th>
+                    <td>@Donor.Name</td>
+                    <td>@Donor.ContactNumber</td>
+                    <td>@Donor.EventDate.ToShortDateString()</td>
+                    <td>@Donor.PrimaryAssignee</td>
+                    <td>@Donor.SecondaryAssignee</td>
+                    <td><a href="#">View</a></td>
+                </tr>
+                
+            }
 
                     </tbody>
+
                 </table>
             </div>
 

@@ -12,10 +12,10 @@ namespace FoodForLife.Controllers
     public class DonationController : Controller
     {
         // GET: Donation
-        public ActionResult List()
+        public ActionResult List(string RequestStatus)
         {
             List<clsDonationDetails> lstDonationDetails = new List<clsDonationDetails>();
-            lstDonationDetails = (new DonorBAL()).GetDonorBAL(0);
+            lstDonationDetails = (new DonorBAL()).GetDonorBAL(RequestStatus);
             return View(lstDonationDetails);
         }
 
@@ -23,7 +23,7 @@ namespace FoodForLife.Controllers
         public ActionResult DonationDetails(long Id)
         {
             clsDonationDetails oclsDonationDetails = new clsDonationDetails();
-            oclsDonationDetails = (new DonorBAL()).GetDonorBAL(Id).FirstOrDefault();
+            oclsDonationDetails = (new DonorBAL()).GetDonorDetailsBAL(Id);
             return View(oclsDonationDetails);
         }
 

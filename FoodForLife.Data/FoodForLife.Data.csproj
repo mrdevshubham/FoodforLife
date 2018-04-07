@@ -79,9 +79,6 @@
     <Compile Include="Entity\tblDonorRequest.cs">
       <DependentUpon>FeedForLife.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entity\tblDonorRequestStatu.cs">
-      <DependentUpon>FeedForLife.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entity\tblDonorRequestVendor.cs">
       <DependentUpon>FeedForLife.tt</DependentUpon>
     </Compile>

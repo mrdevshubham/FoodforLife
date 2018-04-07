@@ -28,11 +28,10 @@ namespace FoodForLife.Data.Entity
         public virtual DbSet<mtblPartyType> mtblPartyTypes { get; set; }
         public virtual DbSet<mtblRole> mtblRoles { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<tblDonorRequest> tblDonorRequests { get; set; }
-        public virtual DbSet<tblDonorRequestStatu> tblDonorRequestStatus { get; set; }
         public virtual DbSet<tblDonorRequestVendor> tblDonorRequestVendors { get; set; }
         public virtual DbSet<tbluser> tblusers { get; set; }
         public virtual DbSet<tblusersRole> tblusersRoles { get; set; }
         public virtual DbSet<tblVendor> tblVendors { get; set; }
+        public virtual DbSet<tblDonorRequest> tblDonorRequests { get; set; }
     }
 }

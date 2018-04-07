@@ -9,7 +9,7 @@ namespace FoodForLife.Model
     public class clsDonationDetails
     {
 
-        public int DonorId { get; set; }
+        public long DonorId { get; set; }
         public string Name { get; set; }
         public string ContactNumber { get; set; }
         public string EmailId { get; set; }

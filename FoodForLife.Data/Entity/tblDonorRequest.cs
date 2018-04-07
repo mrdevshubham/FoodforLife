@@ -17,7 +17,6 @@ namespace FoodForLife.Data.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblDonorRequest()
         {
-            this.tblDonorRequestStatus = new HashSet<tblDonorRequestStatu>();
             this.tblDonorRequestVendors = new HashSet<tblDonorRequestVendor>();
             this.tblDonorRequestVendors1 = new HashSet<tblDonorRequestVendor>();
         }
@@ -37,15 +36,14 @@ namespace FoodForLife.Data.Entity
         public Nullable<long> PartyType { get; set; }
         public string FoodType { get; set; }
         public Nullable<int> TotalServingsInvited { get; set; }
-        public System.TimeSpan CollectioTime { get; set; }
+        public System.TimeSpan CollectionTime { get; set; }
         public Nullable<int> TotalServingsLeft { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime Createddate { get; set; }
         public System.DateTime ModifiedDate { get; set; }
+        public string RequestStatus { get; set; }
     
         public virtual mtblPartyType mtblPartyType { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblDonorRequestStatu> tblDonorRequestStatus { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblDonorRequestVendor> tblDonorRequestVendors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

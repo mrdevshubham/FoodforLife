@@ -18,9 +18,14 @@ namespace FoodForLife.Business
             return (new DonorDAL()).SaveDonorDetails(oclsDonationDetails);
         }
 
-        public List<clsDonationDetails> GetDonorBAL(long Id)
+        public List<clsDonationDetails> GetDonorBAL(string RequestStatus)
         {
-            return (new DonorDAL()).GetDonor(Id);
+            return (new DonorDAL()).GetDonor(RequestStatus);
+        }
+
+        public clsDonationDetails GetDonorDetailsBAL(long Id)
+        {
+            return (new DonorDAL()).GetDonorDetails(Id);
         }
 
 
