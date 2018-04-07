@@ -17,5 +17,6 @@ namespace FoodForLife.Model
         public bool Isactive { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
+
     }
 }
