@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="clsUser.cs" />
     <Compile Include="clsDonationDetails.cs" />
+    <Compile Include="clsVendor.cs" />
+    <Compile Include="HomeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Constants\RequestStatus.cs" />
     <Compile Include="ResponseMessage.cs" />

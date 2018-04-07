@@ -1,9 +1,31 @@
-﻿@model List<FoodForLife.Model.clsDonationDetails>
+﻿@model FoodForLife.Model.HomeModel
 @{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     string RequestStatus = ViewBag.RequestStatus;
 }
+
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>*@
+@*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 0px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
 
 <!-- main content start-->
 <div id="page-wrapper">
@@ -37,8 +59,8 @@
                     </thead>
                     <tbody>
 
-                        @foreach (var Donor in Model)
-    {
+                        @foreach (var Donor in Model.lstDonationDetails)
+                {
 
                     <tr class="active">
                         <th scope="row"><a href="@Url.Action("DonationDetails","Donation", new { Id =  Donor.DonorId})">@Donor.DonorId</a> </th>
@@ -47,18 +69,10 @@
                         <td>@Donor.EventDate.ToShortDateString()</td>
                         <td>@Donor.PrimaryAssignee</td>
                         <td>@Donor.SecondaryAssignee</td>
-                        <td><a href="#">View</a></td>
+                        <td><a data-toggle="modal" data-target="#myModal" href="#">Process</a></td>
                     </tr>
 
-}
-       <script>
-        function showHideBlock() {
-            var donorDetails = document.getElementById("donorDetailsView");
-            var vendorDetails = document.getElementById("vendorDetailsView");
-            donorDetails.style.display === "block";
-            vendorDetails.style.display === "none";
-        }
-       </script>
+                }
 
                     </tbody>
 
@@ -72,3 +86,79 @@
 
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Assign Vendor</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label"> Donor Request Id: <span id="spn-reqid"> 123456</span></label>
+                        </div>
+                        <div class="form-group">
+                            <label for="selector1" class="col-sm-2 control-label">Vendor</label>
+                            <div class="col-sm-8">
+                                <select name="selector1" id="selector1" class="form-control1">
+                                    <option selected="selected" value="0">Select Vendor</option>
+                                    @foreach (var vendor in Model.lstVendors)
+                                    {
+                                        <option value="@vendor.Id">@vendor.VendorName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <p style="color:red">Please select the vendor.</p>
+                            <div class="col-md-10">
+                                <div class="col-md-5"> <button type="button" class="btn btn-default">Assign</button> </div>
+                                <div class="col-md-5"> <button type="button" class="btn btn-default">Cancel</button> </div>
+                            </div>
+                        </div>
+                         
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function myFunction() {
+        document.getElementById("vendorForm").reset();
+    }
+    function validateForm() {
+        var vendorContact = document.forms["vendorForm"]["vendorContact"].value;
+        var beneficiaryContact = document.forms["vendorForm"]["beneficiaryContact"].value;
+        var regexp1 = new RegExp("[^0-9]");
+        if (regexp1.test(vendorContact)) {
+            alert("Only numbers are allowed in Vendor Contact details.");
+            return false;
+        }
+        if (vendorContact.length < 10) {
+            alert("Vendor Contact must be of 10 digit.");
+            return false;
+        }
+        if (regexp1.test(beneficiaryContact)) {
+            alert("Only numbers are allowed in Beneficiary Contact details.");
+            return false;
+        }
+
+        if (beneficiaryContact.length < 10) {
+            alert("Beneficiary Contact must be of 10 digit.");
+            return false;
+        }
+
+
+
+    }
+</script>

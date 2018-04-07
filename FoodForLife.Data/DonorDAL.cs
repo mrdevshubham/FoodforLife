@@ -21,7 +21,7 @@ namespace FoodForLife.Data
                     if (oPinCode != null)
                     {
 
-                        TimeSpan resultadoRetrasoIngresoAM = new TimeSpan(oclsDonationDetails.CollectionTime.Hours, oclsDonationDetails.CollectionTime.Minutes, oclsDonationDetails.CollectionTime.Milliseconds);
+                        TimeSpan resultadoRetrasoIngresoAM = new TimeSpan(oclsDonationDetails.CollectionTime.Days, oclsDonationDetails.CollectionTime.Minutes, oclsDonationDetails.CollectionTime.Milliseconds);
 
                         feedforlifeContext.USP_SaveDonationDetails(oclsDonationDetails.Name, oclsDonationDetails.ContactNumber, oclsDonationDetails.EmailId, oclsDonationDetails.DateOfBirth, oclsDonationDetails.AnniveraryDate
                             , oclsDonationDetails.EventName, oclsDonationDetails.EventDate, oclsDonationDetails.EventAddress, oclsDonationDetails.City, oclsDonationDetails.State

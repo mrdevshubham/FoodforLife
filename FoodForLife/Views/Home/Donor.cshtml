@@ -1,6 +1,23 @@
 ﻿
 @{
     Layout = null;
+    int Code = -1;
+    string oErrorMessage = "";
+    string oSuccessMessage = "";
+
+    if (ViewBag.Code != null)
+    {
+        Code = ViewBag.Code;
+
+        if (Code == 0)
+        {
+            oErrorMessage = ViewBag.Message;
+        }
+        else
+        {
+            oSuccessMessage = ViewBag.Message;
+        }
+    }
 }
 
 <!DOCTYPE html>
@@ -68,14 +85,16 @@
             <div class="row">
                 <div class="col-half">
                     <h4>Date of Birth</h4>
-                    <div class="input-group">
+                    <div class="input-group input-group-icon">
                         <input id="dateDOB" name="DateOfBirth" placeholder="DOB" required />
+                        <div class="input-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
                     </div>
                 </div>
                 <div class="col-half">
                     <h4>Wedding Anniversary</h4>
-                    <div class="input-group">
+                    <div class="input-group input-group-icon">
                         <input id="dateAnniversary" name="AnniveraryDate" placeholder="Wedding Anniversary" required />
+                        <div class="input-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
                     </div>
                 </div>
             </div>
@@ -83,7 +102,7 @@
                 <h4>Function Details</h4>
                 <div class="input-group input-group-icon">
                     <input id="functionDate" name="EventDate" placeholder="Function Date" required />
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <div class="input-icon"><i class="fa fa-calendar" aria-hidden="true"></i></div>
                 </div>
 
                 <div class="input-group input-group-icon">
@@ -109,19 +128,19 @@
 
 
             <div class="input-group input-group-icon">
-                <select id="partyType" name="PartyType" required class="col-dropdown">
-                    <option value="">--Select Party Type--</option>
+                <select id="partyType" name="PartyTypeId" required class="col-dropdown">
+                    <option value="0">--Select Party Type--</option>
                     <option value="101">Birthday Party</option>
                     <option value="102">Wedding</option>
-                    <option value="103">Kitty Party / Get Together</option>
+                    <option value="104">Kitty Party / Get Together</option>
                     <option value="104">Death Ceremony</option>
-                    <option value="105">Devotional Ceremony</option>
-                    <option value="106">Others</option>
+                    <option value="106">Devotional Ceremony</option>
+                    <option value="107">Others</option>
                 </select>
             </div>
 
             <div class="input-group input-group-icon">
-                <input type="text" id="otherTextId" name="EventName" placeholder="Others(Please Specify)" maxlength="50" required />
+                <input type="text" class="display-hide" id="otherTextId" name="EventName" placeholder="Others(Please Specify)" maxlength="50" />
                 <div class="input-icon"><i class="fa fa-user"></i></div>
             </div>
 
@@ -141,8 +160,8 @@
                     <div class="input-icon"><i style="font-size:24px" class="fa">&#xf0c0;</i></div>
                 </div>
                 <div class="input-group input-group-icon">
-                    <input type="text" id="timeCollection" name="CollectionTime" placeholder="Time Of Collection" maxlength="20" required />
-                    <div class="input-icon"><span class="glyphicon">&#xe023;</span></div>
+                    <input type="number" id="timeCollection" name="CollectionTime" placeholder="Time Of Collection" min="0" max="23" maxlength="2" required />
+                    <div class="input-icon"><i class="material-icons">&#xe192;</i></div>
                 </div>
                 <div class="input-group input-group-icon">
                     <input type="number" id="expectedServings" name="TotalServingLeft" placeholder="Expected Servings Left" maxlength="9" />
@@ -157,8 +176,10 @@
                     <label for="terms">I agree to receive the promotional emails and messages from Feed4Life for my contributions to the society.</label>
                 </div>
             </div>
-            <div class="row">
+            <div id="dv-message" class="row">
                 <div class="input-group input-group-icon">
+                    <p style="color:red">@oErrorMessage</p>
+                    <p style="color:green">@oSuccessMessage</p>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="submit" class="button" id="donorSubmitButton" name="donorSubmitButton">Submit</button>
                     <button type="button" onclick="reset()" id="resetDonorButton" name="resetDonorButton" class="button button3">Reset</button>
@@ -177,85 +198,35 @@
 
 
         <script>
-            $('#partyType').on('change', function () {
-                //if (this.value == '1') {
-                //    $('#partyType').val("Birthday Party");
-                //}
-                //if (this.value == '2') {
-                //    $('#partyType').val("Wedding");
-                //}
-                //if (this.value == '3') {
-                //    $('#partyType').val("Kitty Party / Get Together");
-                //}
-                //if (this.value == '4') {
-                //    $('#partyType').val("Death Ceremony");
-                //}
-                //if (this.value == '5') {
-                //    $('#partyType').val("Devotional Ceremony");
-                //}
-                //if (this.value == '6') {
-                //    document.getElementById('otherTextId').style.display = 'block';
-                //}
-                //else {
-                //    document.getElementById('otherTextId').style.display = 'none';
-                //}
-               
-            });
-
             $(document).ready(function () {
-                //document.getElementById('otherTextId').style.display = 'none';
-                $("#functionDate").datepicker();
-                $("#dateDOB").datepicker();
-                $("#dateAnniversary").datepicker();
 
-                //$('').click(function () {
-                //    $.ajax({
-                //        type: "POST",
-                //        url: "/Donor/SaveDonation",
-                //        data: {
+                var ocd = '@Code';
 
-                //            Name: $("#name").val(),
-                //            ContactNumber: $("#contact").val(),
-                //            EmailId: $("#email").val(),
-                //            DateOfBirth: $("#dateDOB").val(),
-                //            AnniveraryDate: $("#dateAnniversary").val(),
-                //            EventName: $("#name").val(),
-                //            EventDate: $("#functionDate").val(),
-                //            EventAddress: $("#venueAddress").val(),
-                //            City: $("#city").val(),
-                //            State: $("#name").val(),
-                //            PinCode: $("#pincode").val(),
-                //            PartyType: $("#partyType").val(),
-                //            FoodType: $("#foodType").val(),
-                //            TotalServingInvited: $("#servingsInvited").val(),
-                //            CollectionTime: $("#timeCollection").val(),
-                //            TotalServingLeft: $("#name").val(),
-                //            PrimaryAssignee: $("#name").val(),
-                //            SecondaryAssignee: $("#name").val(),
-                //            Isactive: $("#name").val(),
-                //            CreatedDate: $("#name").val(),
-                //            ModifiedDate: $("#name").val(),
+                if (ocd >= 0) {
 
-                //        },
-                //        success: function (result) {
-                //            console.log(result.Result);
-                //            if (result.Result == "Success") {
-                //                alert("Your Request has been submitted successfully. Thanks for your Donation !! We will reach out to you shortly.");
-                //                //location.href = '/Home/Donor/';
-                //            }
-                //            else {
+                    $('html,body').animate({
+                        scrollTop: $("#dv-message").offset().top
+                    },
+                        'slow');
+                }
 
-                //                $('#lblmessage').text(result.Message);
 
-                //            }
 
-                //        },
-                //        error: function (result) {
-                //            alert('error');
-                //        }
-                //    });
+                $("#functionDate").datepicker({ minDate: 0 });
+                $("#dateDOB").datepicker({ maxDate: new Date() });
+                $("#dateAnniversary").datepicker({ maxDate: new Date() });
 
-                //})
+                $('#otherTextId').css('display','none')
+
+                $('#partyType').change(function () {
+                    var Value = this.value;
+
+                    if (Value == 107) {
+                        $('#otherTextId').css('display', 'inline-block');
+                        $('#otherTextId').attr('required', 'true');
+                    }
+                });
+
             });
 
             function reset() {

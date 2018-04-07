@@ -67,18 +67,19 @@ namespace FoodForLife.Controllers
         [HttpPost]
         public ActionResult SaveDonation(clsDonationDetails oclsDonationDetails)
         {
-            //oclsDonationDetails.EventName = "BirthDay";
-            //oclsDonationDetails.State = "Haryana";
-
             var isSuccess = (new DonorBAL()).SaveDonorDetailsBAL(oclsDonationDetails, ref oResponse);
             if (isSuccess)
             {
-                oResponse.Result = "Success";
-                oResponse.Message = "Thank you for your contribution.";
-                return Json(new { oResponse });
+                ViewBag.Code = 1;
+                ViewBag.Message = "Your request has been saved successfully, Thank you for your contribution.";
+                return View("~/Views/Home/Donor.cshtml");
             }
             else
-                return Json(new {oResponse});
+            {
+                ViewBag.Code = 0;
+                ViewBag.Message = oResponse.Message;
+                return View("~/Views/Home/Donor.cshtml");
+            }
         }
 
 

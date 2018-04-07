@@ -94,6 +94,7 @@
     <Compile Include="Entity\tblVendor.cs">
       <DependentUpon>FeedForLife.tt</DependentUpon>
     </Compile>
+    <Compile Include="VendorDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FoodForLife.Model\FoodForLife.Model.csproj">
