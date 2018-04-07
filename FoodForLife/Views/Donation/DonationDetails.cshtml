@@ -1,0 +1,130 @@
+﻿@model FoodForLife.Model.clsDonationDetails
+@{
+    ViewBag.Title = "DonationDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div id="page-wrapper">
+    <div class="main-page">
+        <h2 class="tittle_w3_agileinfo">Donor Details</h2><br />
+        <table>
+
+
+
+
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="requestId">Request ID</label></td>
+                <td><label style="color:black;font-weight: bold;" id="requestValue">@Model.DonorId</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="donorNameId">Donor Name</label></td>
+                <td><label style="color:black;font-weight: bold;" id="donorNameValue">@Model.Name</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="contactId">Contact Number</label></td>
+                <td><label style="color:black;font-weight: bold;" id="ContactValue">@Model.ContactNumber</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="emailId">Email ID</label></td>
+                <td><label style="color:black;font-weight: bold;" id="emailValue">@Model.EmailId</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="dateOfBirthId">Date Of Birth</label></td>
+                <td><label style="color:black;font-weight: bold;" id="dateOfBirthValue">@(Model.DateOfBirth == null ? "Not Provided" : Convert.ToDateTime(Model.DateOfBirth).ToShortDateString())</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="weddingAnniversaryId">Wedding Anniversary</label></td>
+                <td><label style="color:black;font-weight: bold;" id="weddingAnniversaryValue">@Model.AnniveraryDate</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="functionDateId">Function Date</label></td>
+                <td><label style="color:black;font-weight: bold;" id="functionDateValue">@Model.EventDate</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="venueAddressId">Venue Address</label></td>
+                <td><label style="color:black;font-weight: bold;" id="venueAddressValue">@Model.EventAddress</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="cityId">City</label></td>
+                <td><label style="color:black;font-weight: bold;" id="cityValue">@Model.City</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="pincodeId">PINCODE</label></td>
+                <td><label style="color:black;font-weight: bold;" id="pincodeValue">@Model.PinCode</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="partyTypeId">Party Type</label></td>
+                <td><label style="color:black;font-weight: bold;" id="partyTypeValue">@Model.PartyType</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="guestsInvitedId">Guests Invited</label></td>
+                <td><label style="color:black;font-weight: bold;" id="guestsInvitedValue">@Model.TotalServingInvited</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="foodTypeId">Food Type</label></td>
+                <td><label style="color:black;font-weight: bold;" id="foodTypeValue">@Model.FoodType</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="collectionTimeId">Collection Time</label></td>
+                <td><label style="color:black;font-weight: bold;" id="collectionTimeValue">@Model.CollectionTime</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="servingsLeftId">Expected Servings Left</label></td>
+                <td><label style="color:black;font-weight: bold;" id="servingsLeftValue">@Model.TotalServingLeft</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="consentId">Consent</label></td>
+                <td><label style="color:black;font-weight: bold;" id="consentValue"> @(Model.Consent ? "Opted For Subscription" : "Not Opted") </label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="primaryAssigneeId">Primary Assignee</label></td>
+                <td><label style="color:black;font-weight: bold;" id="primaryAssigneeValue">@Model.PrimaryAssignee</label></td>
+            </tr>
+            <tr>
+                <td><label style="color:black;font-weight: bold;" id="secondaryAssigneeId">Secondary Assignee</label></td>
+                <td><label style="color:black;font-weight: bold;" id="secondaryAssigneeValue">@Model.SecondaryAssignee</label></td>
+            </tr>
+
+
+            @if (Model.RequestStatus == "NEW")
+            {
+                <tr>
+                    <td><label style="color:black;font-weight: bold;" id="vendorNameId">Vendor Name</label></td>
+                    <td><label style="color:black;font-weight: bold;" id="vendorNameValue">Vendor Name will be displayed</label></td>
+                </tr>
+                <tr>
+                    <td><label style="color:black;font-weight: bold;" id="vendorAddressId">Vendor Address</label></td>
+                    <td><label style="color:black;font-weight: bold;" id="vendorAddressValue">K-3/31,K-3 Road sector 25,DLF Phase 2 Gurgoan</label></td>
+                </tr>
+                <tr>
+                    <td><label style="color:black;font-weight: bold;" id="vendorContactId">vendor Contact</label></td>
+                    <td><label style="color:black;font-weight: bold;" id="vendorContactValue">9910675674</label></td>
+                </tr>
+                <tr>
+                    <td><label style="color:black;font-weight: bold;" id="beneficiaryNameId">Beneficiary Name</label></td>
+                    <td><label style="color:black;font-weight: bold;" id="beneficiaryNameValue">Ruchika Trivedi</label></td>
+                </tr>
+                <tr>
+                    <td><label style="color:black;font-weight: bold;" id="beneficiaryAddressId">Beneficiary Address</label></td>
+                    <td><label style="color:black;font-weight: bold;" id="beneficiaryAddressValue">Near DLF Phase 2</label></td>
+                </tr>
+                <tr>
+                    <td><label style="color:black;font-weight: bold;" id="beneficiaryContactId">Beneficiary Contact</label></td>
+                    <td><label style="color:black;font-weight: bold;" id="beneficiaryContactValue">9896537114</label></td>
+                </tr>
+
+
+
+            }
+
+        </table>
+        <br />
+        <div class="row">
+            <div class="input-group input-group-icon">
+                <button type="button">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
