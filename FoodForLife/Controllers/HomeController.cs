@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using FoodForLife.Business;
 using FoodForLife.Model;
 using System.Web.Security;
+using System.Configuration;
 
 namespace FoodForLife.Controllers
 {
@@ -56,6 +57,11 @@ namespace FoodForLife.Controllers
             var isSuccess = (new DonorBAL()).SaveDonorDetailsBAL(oclsDonationDetails, ref oResponse);
             if (isSuccess)
             {
+                clsEmail oclsEmail = GetEmailSettings();
+                oclsEmail.ToEmail = oclsDonationDetails.EmailId;
+
+                bool isMailsent = (new Emailer()).SendEmailToDonorOnDonation(oclsEmail);
+
                 ViewBag.Code = 1;
                 ViewBag.Message = "Your request has been saved successfully, Thank you for your contribution.";
                 return View("~/Views/Home/Donor.cshtml");
@@ -85,5 +91,22 @@ namespace FoodForLife.Controllers
             ViewBag.Message = "Your contact page.";
             return View();
         }
+
+
+        public clsEmail GetEmailSettings()
+        {
+            clsEmail oclsemail = new clsEmail();
+            oclsemail.Smtp = Convert.ToString(ConfigurationManager.AppSettings["smtp"]);
+            oclsemail.Port = Convert.ToInt32(ConfigurationManager.AppSettings["port"]);
+            oclsemail.Username = Convert.ToString(ConfigurationManager.AppSettings["username"]);
+            oclsemail.password = Convert.ToString(ConfigurationManager.AppSettings["password"]);
+            oclsemail.FromEmail = Convert.ToString(ConfigurationManager.AppSettings["from"]);
+            oclsemail.EnableSSL = Convert.ToBoolean(ConfigurationManager.AppSettings["enablessl"]);
+
+            return oclsemail;
+        }
+
+
+
     }
 }

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DonorBAL.cs" />
+    <Compile Include="Emailer.cs" />
     <Compile Include="LoginBAL.cs" />
     <Compile Include="ngoBAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
