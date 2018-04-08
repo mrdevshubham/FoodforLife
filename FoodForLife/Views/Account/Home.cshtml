@@ -75,7 +75,7 @@
                         }
                         else if (RequestStatus == "PENDING")
                         {
-                            <td><a data-toggle="modal" class="lnk-process" data-target="#editModal" href="#">Edit</a></td>
+                            <td><a data-toggle="modal" class="lnk-update" data-target="#editModal" href="#">Edit</a></td>
                         }
                         
                     </tr>
@@ -296,13 +296,20 @@
         });
 
 
+        $('.lnk-update').click(function () {
+            donorRequestId = $(this).parent().parent('.tr-parent').find('.hf-DonorId').val();
+            document.getElementById("spn-reqid-edit").innerHTML = donorRequestId;
+        })
+
         //updateSubmit
         $('#updateSubmit').click(function () {
             editvendorValue = $("#editVendorSelector").val();
             editbeneficiaryValue = $("#editBeneficiarySelector").val();
             statusSelectorVal = $("#statusSelector").val();
 
-            if (vendorValue == 0 || beneficiaryValue == 0) {
+
+
+            if (editvendorValue == 0 || editbeneficiaryValue == 0) {
                 $("#editErrorMsg").show();
                 $("#editSuccessMsg").hide();
             }
@@ -310,14 +317,13 @@
 
                 $('#updateSubmit').attr('disable', 'true');
 
-
                 $.ajax({
                     type: "POST",
-                    url: "/Account/AssignVendor/PENDING",
+                    url: "/Account/EditDonorRequestDetails",
                     data: {
                         RequestId: donorRequestId,
-                        VendorId: $("#updateSubmit").val(),
-                        nGoId: beneficiaryValue,
+                        VendorId: editvendorValue,
+                        nGoId: editbeneficiaryValue,
                         status: statusSelectorVal
                     },
                     success: function (result) {
