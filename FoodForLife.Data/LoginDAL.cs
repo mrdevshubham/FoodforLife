@@ -21,11 +21,10 @@ namespace FoodForLife.Data
 
                 if (Result != null)
                 {
-                    clsUser oclsUser = new clsUser();
-                    oclsUser.Id = Result.Id;
-                    oclsUser.Email = Result.Email;
-                    oclsUser.FirstName = Result.Firstname;
-                    oclsUser.Phone = Result.Phone;
+                    oclsuser.Id = Result.Id;
+                    oclsuser.Email = Result.Email;
+                    oclsuser.FirstName = Result.Firstname;
+                    oclsuser.Phone = Result.Phone;
                     return true;
                 }
                 else

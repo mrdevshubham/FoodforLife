@@ -1974,6 +1974,7 @@ p.copy-right a:hover {
 }
 
 .contact_grid_right input[type="submit"],
+.frm-login input[type="button"],
 .contact_grid_right input[type="reset"] {
     outline: none;
     padding: 23px 0;
@@ -1992,10 +1993,11 @@ p.copy-right a:hover {
     font-weight: 700;
 }
 
-.contact_grid_right input[type="submit"],
-.contact_grid_right input[type="reset"]:hover {
-    background-color: #0f9d58;
-}
+    .contact_grid_right input[type="submit"],
+    .frm-login input[type="button"],
+    .contact_grid_right input[type="reset"]:hover {
+        background-color: #0f9d58;
+    }
 
 .contact-left h4 {
     color: #444;

@@ -62,6 +62,9 @@ namespace FoodForLife.Controllers
 
                 bool isMailsent = (new Emailer()).SendEmailToDonorOnDonation(oclsEmail);
 
+                oclsEmail.ToEmail = oclsEmail.AdminEmail;
+                bool isMailsenttoadmin = (new Emailer()).SendEmailToAdminOnDonationReceiving(oclsEmail);
+
                 ViewBag.Code = 1;
                 ViewBag.Message = "Your request has been saved successfully, Thank you for your contribution.";
                 return View("~/Views/Home/Donor.cshtml");
@@ -101,6 +104,7 @@ namespace FoodForLife.Controllers
             oclsemail.Username = Convert.ToString(ConfigurationManager.AppSettings["username"]);
             oclsemail.password = Convert.ToString(ConfigurationManager.AppSettings["password"]);
             oclsemail.FromEmail = Convert.ToString(ConfigurationManager.AppSettings["from"]);
+            oclsemail.AdminEmail = Convert.ToString(ConfigurationManager.AppSettings["adminemail"]);
             oclsemail.EnableSSL = Convert.ToBoolean(ConfigurationManager.AppSettings["enablessl"]);
 
             return oclsemail;

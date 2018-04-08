@@ -9,6 +9,8 @@ namespace FoodForLife.Model
     public class clsEmail
     {
         public string FromEmail { get; set; }
+        public string AdminEmail { get; set; }
+        public string Subject { get; set; }
         public string ToEmail { get; set; }
         public int Port { get; set; }
         public bool EnableSSL { get; set; }
