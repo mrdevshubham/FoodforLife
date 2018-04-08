@@ -115,7 +115,7 @@
             </div>
 
             <div class="input-group input-group-icon">
-                <input type="text" id="otherTextId" name="otherTextId" placeholder="Others(Please Specify)" maxlength="50" required />
+                <input type="text" id="otherTextId" name="EventName" placeholder="Others(Please Specify)" maxlength="50" required />
                 <div class="input-icon"><i class="fa fa-user"></i></div>
             </div>
 
@@ -202,54 +202,54 @@
                 $("#dateDOB").datepicker();
                 $("#dateAnniversary").datepicker();
 
-                $('').click(function () {
-                    $.ajax({
-                        type: "POST",
-                        url: "/Donor/SaveDonation",
-                        data: {
+                //$('').click(function () {
+                //    $.ajax({
+                //        type: "POST",
+                //        url: "/Donor/SaveDonation",
+                //        data: {
 
-                            Name: $("#name").val(),
-                            ContactNumber: $("#contact").val(),
-                            EmailId: $("#email").val(),
-                            DateOfBirth: $("#dateDOB").val(),
-                            AnniveraryDate: $("#dateAnniversary").val(),
-                            EventName: $("#name").val(),
-                            EventDate: $("#functionDate").val(),
-                            EventAddress: $("#venueAddress").val(),
-                            City: $("#city").val(),
-                            State: $("#name").val(),
-                            PinCode: $("#pincode").val(),
-                            PartyType: $("#partyType").val(),
-                            FoodType: $("#foodType").val(),
-                            TotalServingInvited: $("#servingsInvited").val(),
-                            CollectionTime: $("#timeCollection").val(),
-                            TotalServingLeft: $("#name").val(),
-                            PrimaryAssignee: $("#name").val(),
-                            SecondaryAssignee: $("#name").val(),
-                            Isactive: $("#name").val(),
-                            CreatedDate: $("#name").val(),
-                            ModifiedDate: $("#name").val(),
+                //            Name: $("#name").val(),
+                //            ContactNumber: $("#contact").val(),
+                //            EmailId: $("#email").val(),
+                //            DateOfBirth: $("#dateDOB").val(),
+                //            AnniveraryDate: $("#dateAnniversary").val(),
+                //            EventName: $("#name").val(),
+                //            EventDate: $("#functionDate").val(),
+                //            EventAddress: $("#venueAddress").val(),
+                //            City: $("#city").val(),
+                //            State: $("#name").val(),
+                //            PinCode: $("#pincode").val(),
+                //            PartyType: $("#partyType").val(),
+                //            FoodType: $("#foodType").val(),
+                //            TotalServingInvited: $("#servingsInvited").val(),
+                //            CollectionTime: $("#timeCollection").val(),
+                //            TotalServingLeft: $("#name").val(),
+                //            PrimaryAssignee: $("#name").val(),
+                //            SecondaryAssignee: $("#name").val(),
+                //            Isactive: $("#name").val(),
+                //            CreatedDate: $("#name").val(),
+                //            ModifiedDate: $("#name").val(),
 
-                        },
-                        success: function (result) {
-                            console.log(result.Result);
-                            if (result.Result == "Success") {
-                                alert("Your Request has been submitted successfully. Thanks for your Donation !! We will reach out to you shortly.");
-                                //location.href = '/Home/Donor/';
-                            }
-                            else {
+                //        },
+                //        success: function (result) {
+                //            console.log(result.Result);
+                //            if (result.Result == "Success") {
+                //                alert("Your Request has been submitted successfully. Thanks for your Donation !! We will reach out to you shortly.");
+                //                //location.href = '/Home/Donor/';
+                //            }
+                //            else {
 
-                                $('#lblmessage').text(result.Message);
+                //                $('#lblmessage').text(result.Message);
 
-                            }
+                //            }
 
-                        },
-                        error: function (result) {
-                            alert('error');
-                        }
-                    });
+                //        },
+                //        error: function (result) {
+                //            alert('error');
+                //        }
+                //    });
 
-                })
+                //})
             });
 
             function reset() {

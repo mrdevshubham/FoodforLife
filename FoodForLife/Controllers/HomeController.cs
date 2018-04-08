@@ -14,6 +14,30 @@ namespace FoodForLife.Controllers
 
         public ActionResult Index()
         {
+            //clsDonationDetails oclsDonationDetails = new clsDonationDetails();
+            //oclsDonationDetails.Name = "Priya";
+            //oclsDonationDetails.ContactNumber = "8985874784";
+            //oclsDonationDetails.EmailId = "priya@sunlife.com";
+
+            //oclsDonationDetails.DateOfBirth = DateTime.Now;
+            //oclsDonationDetails.AnniveraryDate = DateTime.Now;
+            //oclsDonationDetails.EventDate = DateTime.Now;
+
+            //oclsDonationDetails.EventName = "Marriage";
+            //oclsDonationDetails.EventAddress = "Address";
+            //oclsDonationDetails.City = "BSW";
+            //oclsDonationDetails.State = "UP";
+            //oclsDonationDetails.PinCode = "243601";
+            //oclsDonationDetails.PartyTypeId = 101;
+            //oclsDonationDetails.FoodType = "VEG";
+            //oclsDonationDetails.TotalServingInvited = 52;
+            ////otblDonorRequest.CollectionTime = resultadoRetrasoIngresoAM;
+            //oclsDonationDetails.TotalServingLeft = 5;
+
+
+            //var isSuccess = (new DonorBAL()).SaveDonorDetailsBAL(oclsDonationDetails, ref oResponse);
+
+
             return View();
         }
 
@@ -43,6 +67,9 @@ namespace FoodForLife.Controllers
         [HttpPost]
         public ActionResult SaveDonation(clsDonationDetails oclsDonationDetails)
         {
+            //oclsDonationDetails.EventName = "BirthDay";
+            //oclsDonationDetails.State = "Haryana";
+
             var isSuccess = (new DonorBAL()).SaveDonorDetailsBAL(oclsDonationDetails, ref oResponse);
             if (isSuccess)
             {

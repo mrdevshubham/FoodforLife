@@ -21,40 +21,19 @@ namespace FoodForLife.Data
                     if (oPinCode != null)
                     {
 
-                        tblDonorRequest otblDonorRequest = new tblDonorRequest();
-                        otblDonorRequest.DonorName = oclsDonationDetails.Name;
-                        otblDonorRequest.ContactNumber = oclsDonationDetails.ContactNumber;
-                        otblDonorRequest.EmailId = oclsDonationDetails.EmailId;
-                        otblDonorRequest.DOB = oclsDonationDetails.DateOfBirth;
-                        otblDonorRequest.WeddingAnniversary = oclsDonationDetails.AnniveraryDate;
-                        otblDonorRequest.EventName = oclsDonationDetails.EventName;
-                        otblDonorRequest.EventDate = oclsDonationDetails.EventDate;
-                        otblDonorRequest.EventAddress = oclsDonationDetails.EventAddress;
-                        otblDonorRequest.City = oclsDonationDetails.City;
-                        otblDonorRequest.State = oclsDonationDetails.State;
-                        otblDonorRequest.PinCode = oclsDonationDetails.PinCode;
-                        otblDonorRequest.PartyType = oclsDonationDetails.PartyTypeId;
-                        otblDonorRequest.FoodType = "";
-                        otblDonorRequest.TotalServingsInvited = oclsDonationDetails.TotalServingInvited;
-                        otblDonorRequest.CollectionTime = oclsDonationDetails.CollectionTime;
-                        otblDonorRequest.TotalServingsLeft = oclsDonationDetails.TotalServingLeft;
-                        otblDonorRequest.IsActive = oclsDonationDetails.Isactive;
-                        otblDonorRequest.Createddate = oclsDonationDetails.CreatedDate;
-                        otblDonorRequest.ModifiedDate = oclsDonationDetails.ModifiedDate;
+                        TimeSpan resultadoRetrasoIngresoAM = new TimeSpan(oclsDonationDetails.CollectionTime.Hours, oclsDonationDetails.CollectionTime.Minutes, oclsDonationDetails.CollectionTime.Milliseconds);
 
-                        otblDonorRequest.PrimaryAdminId = oPinCode.AdminId;
-
-                        feedforlifeContext.tblDonorRequests.Add(otblDonorRequest);
-                        feedforlifeContext.SaveChanges();
+                        feedforlifeContext.USP_SaveDonationDetails(oclsDonationDetails.Name, oclsDonationDetails.ContactNumber, oclsDonationDetails.EmailId, oclsDonationDetails.DateOfBirth, oclsDonationDetails.AnniveraryDate
+                            , oclsDonationDetails.EventName, oclsDonationDetails.EventDate, oclsDonationDetails.EventAddress, oclsDonationDetails.City, oclsDonationDetails.State
+                            , oclsDonationDetails.PinCode, oclsDonationDetails.PartyTypeId, oclsDonationDetails.FoodType, oclsDonationDetails.TotalServingInvited, resultadoRetrasoIngresoAM, oclsDonationDetails.TotalServingLeft, RequestStatus.NEW, oPinCode.AdminId);
                     }
                     else
                     {
                         oResponse.ResponseCode = 0;
                         oResponse.Result = "Failure";
-                        oResponse.Message = "Oops! Currently we do not server at these pin codes.";
+                        oResponse.Message = "Oops! Currently we do not serve at these pin codes.";
                         return false;
                     }
-                    
                     return true;
                 }
             }
@@ -75,7 +54,8 @@ namespace FoodForLife.Data
                 {
 
                     var lstDonor = (from donor in feedforlifeContext.tblDonorRequests.Where(D => D.RequestStatus == RequestStatus)
-                                  select new clsDonationDetails
+                                    join DType in feedforlifeContext.mtblPartyTypes on donor.PartyType equals DType.Id
+                                    select new clsDonationDetails
                                   {
                                       DonorId = donor.Id,
                                       Name = donor.DonorName,

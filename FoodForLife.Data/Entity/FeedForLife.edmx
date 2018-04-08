@@ -63,7 +63,7 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
           <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DOB" Type="datetime" />
           <Property Name="WeddingAnniversary" Type="datetime" />
-          <Property Name="EventName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="EventName" Type="varchar" MaxLength="200" />
           <Property Name="EventDate" Type="datetime" Nullable="false" />
           <Property Name="EventAddress" Type="varchar(max)" Nullable="false" />
           <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
@@ -227,6 +227,26 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="USP_SaveDonationDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DonorName" Type="varchar" Mode="In" />
+          <Parameter Name="ContactNumber" Type="varchar" Mode="In" />
+          <Parameter Name="EmailId" Type="varchar" Mode="In" />
+          <Parameter Name="DOB" Type="datetime" Mode="In" />
+          <Parameter Name="WeddingAnniversary" Type="datetime" Mode="In" />
+          <Parameter Name="EventName" Type="varchar" Mode="In" />
+          <Parameter Name="EventDate" Type="datetime" Mode="In" />
+          <Parameter Name="EventAddress" Type="varchar" Mode="In" />
+          <Parameter Name="City" Type="varchar" Mode="In" />
+          <Parameter Name="State" Type="varchar" Mode="In" />
+          <Parameter Name="PinCode" Type="varchar" Mode="In" />
+          <Parameter Name="PartyTypeId" Type="bigint" Mode="In" />
+          <Parameter Name="FoodType" Type="varchar" Mode="In" />
+          <Parameter Name="TotalServingsInvited" Type="int" Mode="In" />
+          <Parameter Name="CollectionTime" Type="time" Mode="In" />
+          <Parameter Name="TotalServingsLeft" Type="int" Mode="In" />
+          <Parameter Name="RequestStatus" Type="varchar" Mode="In" />
+          <Parameter Name="PrimaryAdminId" Type="bigint" Mode="In" />
+        </Function>
         <EntityContainer Name="FeedforlifeModelStoreContainer">
           <EntitySet Name="mtblPartyType" EntityType="Self.mtblPartyType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="mtblRoles" EntityType="Self.mtblRoles" Schema="dbo" store:Type="Tables" />
@@ -347,7 +367,7 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
           <NavigationProperty Name="tblAdminTerritories" Relationship="FeedforlifeModel.FK__tblAdminT__Admin__01142BA1" FromRole="tbluser" ToRole="tblAdminTerritory" />
           <NavigationProperty Name="tblDonorRequests" Relationship="FeedforlifeModel.FK__tblDonorR__Prima__04E4BC85" FromRole="tbluser" ToRole="tblDonorRequest" />
           <NavigationProperty Name="tblDonorRequests1" Relationship="FeedforlifeModel.FK__tblDonorR__Secon__05D8E0BE" FromRole="tbluser" ToRole="tblDonorRequest" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="tblusersRole">
           <Key>
             <PropertyRef Name="Id" />
@@ -415,6 +435,11 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
             <End Role="tblusers" EntitySet="tblusers" />
             <End Role="tblusersRole" EntitySet="tblusersRoles" />
           </AssociationSet>
+          <EntitySet Name="tblAdminTerritories" EntityType="FeedforlifeModel.tblAdminTerritory" />
+          <AssociationSet Name="FK__tblAdminT__Admin__01142BA1" Association="FeedforlifeModel.FK__tblAdminT__Admin__01142BA1">
+            <End Role="tbluser" EntitySet="tblusers" />
+            <End Role="tblAdminTerritory" EntitySet="tblAdminTerritories" />
+          </AssociationSet>
           <EntitySet Name="tblDonorRequests" EntityType="FeedforlifeModel.tblDonorRequest" />
           <AssociationSet Name="FK__tblDonorR__Party__5FB337D6" Association="FeedforlifeModel.FK__tblDonorR__Party__5FB337D6">
             <End Role="mtblPartyType" EntitySet="mtblPartyTypes" />
@@ -428,11 +453,6 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
             <End Role="tblDonorRequest" EntitySet="tblDonorRequests" />
             <End Role="tblDonorRequestVendor" EntitySet="tblDonorRequestVendors" />
           </AssociationSet>
-          <EntitySet Name="tblAdminTerritories" EntityType="FeedforlifeModel.tblAdminTerritory" />
-          <AssociationSet Name="FK__tblAdminT__Admin__01142BA1" Association="FeedforlifeModel.FK__tblAdminT__Admin__01142BA1">
-            <End Role="tbluser" EntitySet="tblusers" />
-            <End Role="tblAdminTerritory" EntitySet="tblAdminTerritories" />
-          </AssociationSet>
           <AssociationSet Name="FK__tblDonorR__Prima__04E4BC85" Association="FeedforlifeModel.FK__tblDonorR__Prima__04E4BC85">
             <End Role="tbluser" EntitySet="tblusers" />
             <End Role="tblDonorRequest" EntitySet="tblDonorRequests" />
@@ -441,7 +461,54 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
             <End Role="tbluser" EntitySet="tblusers" />
             <End Role="tblDonorRequest" EntitySet="tblDonorRequests" />
           </AssociationSet>
-        </EntityContainer>
+          <FunctionImport Name="USP_SaveDonationDetails">
+            <Parameter Name="DonorName" Mode="In" Type="String" />
+            <Parameter Name="ContactNumber" Mode="In" Type="String" />
+            <Parameter Name="EmailId" Mode="In" Type="String" />
+            <Parameter Name="DOB" Mode="In" Type="DateTime" />
+            <Parameter Name="WeddingAnniversary" Mode="In" Type="DateTime" />
+            <Parameter Name="EventName" Mode="In" Type="String" />
+            <Parameter Name="EventDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EventAddress" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="PinCode" Mode="In" Type="String" />
+            <Parameter Name="PartyTypeId" Mode="In" Type="Int64" />
+            <Parameter Name="FoodType" Mode="In" Type="String" />
+            <Parameter Name="TotalServingsInvited" Mode="In" Type="Int32" />
+            <Parameter Name="CollectionTime" Mode="In" Type="Time" />
+            <Parameter Name="TotalServingsLeft" Mode="In" Type="Int32" />
+            <Parameter Name="RequestStatus" Mode="In" Type="String" />
+            <Parameter Name="PrimaryAdminId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          </EntityContainer>
+        <EntityType Name="tblAdminTerritory">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="AdminId" />
+            <PropertyRef Name="AssignedPinCodes" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminId" Type="Int64" Nullable="false" />
+          <Property Name="AssignedPinCodes" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbluser" Relationship="FeedforlifeModel.FK__tblAdminT__Admin__01142BA1" FromRole="tblAdminTerritory" ToRole="tbluser" />
+        </EntityType>
+        <Association Name="FK__tblAdminT__Admin__01142BA1">
+          <End Type="FeedforlifeModel.tbluser" Role="tbluser" Multiplicity="1" />
+          <End Type="FeedforlifeModel.tblAdminTerritory" Role="tblAdminTerritory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbluser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAdminTerritory">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="tblDonorRequest">
           <Key>
             <PropertyRef Name="Id" />
@@ -452,7 +519,7 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
           <Property Name="EmailId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DOB" Type="DateTime" Precision="3" />
           <Property Name="WeddingAnniversary" Type="DateTime" Precision="3" />
-          <Property Name="EventName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EventName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EventAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -466,12 +533,12 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Createddate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="mtblPartyType" Relationship="FeedforlifeModel.FK__tblDonorR__Party__5FB337D6" FromRole="tblDonorRequest" ToRole="mtblPartyType" />
-          <NavigationProperty Name="tblDonorRequestVendors" Relationship="FeedforlifeModel.FK__DonorRequ__Reque__6FE99F9F" FromRole="tblDonorRequest" ToRole="tblDonorRequestVendor" />
-          <NavigationProperty Name="tblDonorRequestVendors1" Relationship="FeedforlifeModel.FK__DonorRequ__Vendo__70DDC3D8" FromRole="tblDonorRequest" ToRole="tblDonorRequestVendor" />
           <Property Name="RequestStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="PrimaryAdminId" Type="Int64" Nullable="false" />
           <Property Name="SecondaryAdminId" Type="Int64" />
+          <NavigationProperty Name="mtblPartyType" Relationship="FeedforlifeModel.FK__tblDonorR__Party__5FB337D6" FromRole="tblDonorRequest" ToRole="mtblPartyType" />
+          <NavigationProperty Name="tblDonorRequestVendors" Relationship="FeedforlifeModel.FK__DonorRequ__Reque__6FE99F9F" FromRole="tblDonorRequest" ToRole="tblDonorRequestVendor" />
+          <NavigationProperty Name="tblDonorRequestVendors1" Relationship="FeedforlifeModel.FK__DonorRequ__Vendo__70DDC3D8" FromRole="tblDonorRequest" ToRole="tblDonorRequestVendor" />
           <NavigationProperty Name="tbluser" Relationship="FeedforlifeModel.FK__tblDonorR__Prima__04E4BC85" FromRole="tblDonorRequest" ToRole="tbluser" />
           <NavigationProperty Name="tbluser1" Relationship="FeedforlifeModel.FK__tblDonorR__Secon__05D8E0BE" FromRole="tblDonorRequest" ToRole="tbluser" />
         </EntityType>
@@ -511,33 +578,6 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="tblAdminTerritory">
-          <Key>
-            <PropertyRef Name="Id" />
-            <PropertyRef Name="AdminId" />
-            <PropertyRef Name="AssignedPinCodes" />
-            <PropertyRef Name="IsActive" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AdminId" Type="Int64" Nullable="false" />
-          <Property Name="AssignedPinCodes" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="tbluser" Relationship="FeedforlifeModel.FK__tblAdminT__Admin__01142BA1" FromRole="tblAdminTerritory" ToRole="tbluser" />
-        </EntityType>
-        <Association Name="FK__tblAdminT__Admin__01142BA1">
-          <End Type="FeedforlifeModel.tbluser" Role="tbluser" Multiplicity="1" />
-          <End Type="FeedforlifeModel.tblAdminTerritory" Role="tblAdminTerritory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tbluser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tblAdminTerritory">
-              <PropertyRef Name="AdminId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__tblDonorR__Prima__04E4BC85">
           <End Type="FeedforlifeModel.tbluser" Role="tbluser" Multiplicity="1" />
           <End Type="FeedforlifeModel.tblDonorRequest" Role="tblDonorRequest" Multiplicity="*" />
@@ -562,7 +602,7 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -657,6 +697,18 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblAdminTerritories">
+            <EntityTypeMapping TypeName="FeedforlifeModel.tblAdminTerritory">
+              <MappingFragment StoreEntitySet="tblAdminTerritory">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AssignedPinCodes" ColumnName="AssignedPinCodes" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblDonorRequests">
             <EntityTypeMapping TypeName="FeedforlifeModel.tblDonorRequest">
               <MappingFragment StoreEntitySet="tblDonorRequest">
@@ -686,18 +738,7 @@ warning 6002: The table/view 'Feedforlife.dbo.tblAdminTerritory' does not have a
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblAdminTerritories">
-            <EntityTypeMapping TypeName="FeedforlifeModel.tblAdminTerritory">
-              <MappingFragment StoreEntitySet="tblAdminTerritory">
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="AssignedPinCodes" ColumnName="AssignedPinCodes" />
-                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="USP_SaveDonationDetails" FunctionName="FeedforlifeModel.Store.USP_SaveDonationDetails" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
